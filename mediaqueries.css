@@ -1,0 +1,21 @@
+/* Ensure proper layout on smaller screens */
+@media (max-width: 1200px) {
+    .menu-links {
+        display: none;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .menu-links.active {
+        display: flex;
+    }
+
+    .hamburger-icon span {
+        background-color: #fff;
+    }
+
+    .menu-links li a:hover {
+        text-decoration: underline;
+        color: white;
+    }
+}

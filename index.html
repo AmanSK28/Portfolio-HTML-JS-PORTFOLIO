@@ -10,7 +10,6 @@
 <body>
     <nav id="desktop-nav">
         <!-- Wrapper for logo and animation -->
-        <!-- Added .logo-container to wrap the logo and text animation -->
         <div class="logo-container">
             <!-- Existing logo -->
             <div class="logo">Aman Kang</div>
@@ -28,7 +27,22 @@
             </ul>
         </div>
     </nav>
-
+    <nav id= "hamburger-nav">
+        <div class="logo">Aman Kang</div>
+        <div class = "hamburger-menu">
+            <div class="hamburger-icon" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="menu-links"></div>
+            <li><a href="#About" onclick="toggleMenu()">About</a></li>
+            <li><a href="#Experience" onclick="toggleMenu()">Experience</a></li>
+            <li><a href="#Projects" onclick="toggleMenu()">Projects</a></li>
+            <li><a href="#Contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
+    </nav>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

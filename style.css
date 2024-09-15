@@ -1,15 +1,11 @@
-/* Importing Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-
-/* Apply global font family */
-body {
-    font-family: 'Poppins', sans-serif;
-}
-
-/* Reset margin and padding */
+/* Existing styles */
 * {
     margin: 0;
     padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
 }
 
 html {
@@ -20,7 +16,6 @@ p {
     color: rgb(85, 85, 85);
 }
 
-/* Transition for links and buttons */
 a, 
 .btn {
     transition: color 300ms ease;
@@ -59,38 +54,27 @@ a:hover {
 /* Adjusted logo-container for positioning */
 .logo-container {
     display: flex;
-    flex-direction: column; /* Stack logo and animation vertically */
-    align-items: flex-start; /* Align items to the left */
-    position: relative; /* Required if using absolute positioning for children */
+    flex-direction: column; /* Ensure the text animation is under the logo */
+    align-items: flex-start; /* Aligns items to the left */
 }
 
-/* Existing logo style */
 .logo {
     font-size: 2rem; /* Adjust size as needed */
-    font-family: 'Poppins', sans-serif; /* Apply Google Font */
 }
 
-.logo:hover {
-    cursor: default;
-}
-
-/* Typing effect styles */
 .typing-container {
-    text-align: left; /* Align text to the left */
-    margin-top: 50px; /* Space between logo and text animation */
-    position: absolute; /* Position absolutely to prevent affecting other elements */
-    left: 0; /* Align to the left or adjust as needed */
+    text-align: left; /* Align text to the left, adjust if needed */
+    margin-top: 10px; /* Space between logo and text animation */
 }
 
 #typewriter {
     display: inline;
-    font-size: 1rem;
+    font-size: 1.5rem;
     font-weight: 400;
     border-right: 2px solid black; /* Cursor effect */
     white-space: nowrap;
     overflow: hidden;
     animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
-    font-family: 'Poppins', sans-serif; /* Apply Google Font */
 }
 
 /* Typing animation */
@@ -103,4 +87,10 @@ a:hover {
 @keyframes blink-caret {
     from, to { border-color: transparent; }
     50% { border-color: black; }
+}
+
+/* HAMBURGER MENUE */
+
+#hamburger-nav {
+    display: none;
 }

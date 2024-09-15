@@ -1,9 +1,7 @@
-// script.js
-
 const phrases = [
-    "A Driven tech enthusiast",
-    "Commited to Physical Wellness",
-    "innovative Problem Solver"
+    "A software engineer",
+    "A motivated athlete",
+    "A retail professional"
 ];
 
 const typewriterElement = document.getElementById('typewriter');
