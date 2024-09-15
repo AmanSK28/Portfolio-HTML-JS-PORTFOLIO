@@ -14,7 +14,7 @@ body {
 }
 
 
-html {scrol-behavior: smooth;
+html {scroll-behavior: smooth;
 }
  
 p{
@@ -25,7 +25,7 @@ p{
 
 a, 
 .btn{
-transition: all 300ms ease;
+transition: color 300ms ease;
 }
 
 /* Desktop Nav ,Flexes the nav, this is juts having it in a bar, adjusts view width to, vh will give more space for the specifed block*/
@@ -47,6 +47,15 @@ nav {
     font-size: 1.5rem;
 }
 
-/* REM ADJUSTS FONT SIZE /*
+/* REM ADJUSTS FONT SIZE */
 
+a {
+    color: black;
+    text-decoration: none;
+}
 
+a:hover {
+    color: grey;
+    text-decoration: underline;
+    text-underline-offset: 1rem;
+}
