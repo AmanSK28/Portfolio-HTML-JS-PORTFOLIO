@@ -12,3 +12,41 @@
 body {
     font-family: 'Poppins', sans-serif;
 }
+
+
+html {scrol-behavior: smooth;
+}
+ 
+p{
+    color: rgb(85, 85, 85);
+}
+
+/* TRANSITION  button has a transition*/
+
+a, 
+.btn{
+transition: all 300ms ease;
+}
+
+/* Desktop Nav ,Flexes the nav, this is juts having it in a bar, adjusts view width to, vh will give more space for the specifed block*/
+
+nav, 
+.nav-links {
+    display: flex; 
+}
+
+nav {
+    justify-content: space-around;
+    align-items: center;
+    height: 17vh;
+}
+
+.nav-links {
+    gap: 2rem;
+    list-style: none;
+    font-size: 1.5rem;
+}
+
+/* REM ADJUSTS FONT SIZE /*
+
+
