@@ -1,21 +1,79 @@
-/* Ensure proper layout on smaller screens */
-@media (max-width: 1200px) {
-    .menu-links {
+/* SECTIONS */
+section {
+    padding-top: 4vh;
+    height: 96vh;
+    margin: 0 10rem;
+    box-sizing: border-box;
+    min-height: fit-content;
+}
+
+.section-container {
+    display: flex;
+}
+
+/* PROFILE SECTION */
+#profile {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    height: 80vh;
+}
+
+/* Center profile picture and text */
+.section__pic-container {
+    display: flex;
+    height: 300px;
+    width: 300px;
+    margin: auto 0;
+}
+
+.section__text {
+    display: flex;
+    flex-direction: column; /* Stack text elements vertically */
+    align-items: center; /* Center horizontally */
+    text-align: center; /* Center text within each element */
+}
+
+.section__text p {
+    font-weight: 600;
+}
+
+.section__text__p1 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem; /* Adjust spacing between 'hello, I'm' and title */
+    margin-top: 10rem; /* Adjust spacing from the top as needed */
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem; /* Adjust spacing between title and subtitle */
+}
+
+.section__text__p2 {
+    font-size: 1rem;
+    margin-top: 1rem; /* Adjust spacing above 'Frontend developer' */
+}
+
+#socials-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+/* ICONS */
+.icon {
+    cursor: pointer;
+    height: 2rem;
+}
+
+/* Media Queries */
+@media screen and (max-width: 1000px) {
+    #desktop-nav {
         display: none;
-        flex-direction: column;
-        text-align: center;
     }
 
-    .menu-links.active {
+    #hamburger-nav {
         display: flex;
-    }
-
-    .hamburger-icon span {
-        background-color: #fff;
-    }
-
-    .menu-links li a:hover {
-        text-decoration: underline;
-        color: white;
     }
 }
