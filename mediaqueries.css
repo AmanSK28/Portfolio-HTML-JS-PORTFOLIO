@@ -22,9 +22,9 @@ section {
 /* Center profile picture and text */
 .section__pic-container {
    display: flex;
-   height: 400px;
-   width: 400px;
-   margin: auto0;
+   height: 300px;
+   width: 300px;
+   margin: auto 0;
 }
 
 .section__text {
