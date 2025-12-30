@@ -253,6 +253,55 @@
   />
 
 
+<!-- Aman AI Section -->
+<section id="aman-ai" class="aman-ai-section">
+  <p class="section__text__p1">Try</p>
+  <h1 class="title">Aman AI</h1>
+
+  <p class="aman-ai-intro">
+    Ask me anything about my experience — I’ll answer using my portfolio + CV (free, on-device).
+  </p>
+
+  <div class="aman-ai-panel">
+    <div class="aman-ai-meta">
+      <span class="aman-ai-badge">Free • Client-side</span>
+      <p class="aman-ai-note">
+        This is a lightweight Q&amp;A system. It searches a small knowledge base built from my portfolio and CV and
+        responds with the most relevant information (with sources). No paid APIs, no tokens, no billing.
+      </p>
+    </div>
+
+    <div class="aman-ai-chips" aria-label="Suggested questions">
+      <button type="button" class="ai-chip" data-ai-question="What roles has Aman done?">What roles has Aman done?</button>
+      <button type="button" class="ai-chip" data-ai-question="What are Aman’s strongest skills?">Strongest skills?</button>
+      <button type="button" class="ai-chip" data-ai-question="Tell me about Aman’s cloud + AI experience.">Cloud + AI experience</button>
+      <button type="button" class="ai-chip" data-ai-question="What projects has Aman worked on?">Projects</button>
+      <button type="button" class="ai-chip" data-ai-question="How can I contact Aman?">Contact</button>
+    </div>
+
+    <div id="aman-ai-chat" class="aman-ai-chat" role="log" aria-live="polite" aria-label="Aman AI chat history">
+      <div class="aman-ai-msg aman-ai-msg--ai">
+        <div class="aman-ai-bubble">
+          👋 Hey — I’m <strong>Aman AI</strong>. Ask me anything about Aman’s experience, skills, or projects.
+        </div>
+      </div>
+    </div>
+
+    <form id="aman-ai-form" class="aman-ai-form" autocomplete="off">
+      <label class="sr-only" for="aman-ai-input">Ask Aman AI</label>
+      <input
+        id="aman-ai-input"
+        class="aman-ai-input"
+        type="text"
+        inputmode="text"
+        placeholder="Ask about cloud, AI, experience, projects…"
+        aria-label="Ask Aman AI a question"
+        required
+      />
+      <button class="btn btn-color-1 aman-ai-send" type="submit" aria-label="Send message">Send</button>
+    </form>
+  </div>
+</section>
 
 
   <!-- Experience Section -->

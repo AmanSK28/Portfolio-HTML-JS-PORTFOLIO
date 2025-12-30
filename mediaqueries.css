@@ -324,3 +324,31 @@
     }
   }
   
+
+  /* =========================
+   AMAN AI (responsive tweaks)
+========================= */
+
+@media screen and (max-width: 1200px) {
+  .aman-ai-section {
+    margin: 0 5%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .aman-ai-panel {
+    padding: 16px;
+  }
+
+  .aman-ai-chat {
+    height: 300px;
+  }
+
+  .aman-ai-form {
+    flex-direction: column;
+  }
+
+  .aman-ai-send {
+    width: 100%;
+  }
+}
