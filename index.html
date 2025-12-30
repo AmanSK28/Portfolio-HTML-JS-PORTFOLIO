@@ -1,244 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <div class="fixed-top-line"></div>
+  <!-- Meta & Title -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Portfolio</title>
 
-    <!-- Meta & Title -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="mediaqueries.css" />
-    <script type="text/javascript" src="darkmode.js" defer></script></head>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="mediaqueries.css" />
+
+  <!-- Scripts -->
+  <script type="text/javascript" src="darkmode.js" defer></script>
+</head>
 
 <body class="darkmode">
-    <button id="theme-switch">
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z"/></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"/></svg>
+
+
+  <header class="site-header">
+    <button id="theme-switch" aria-label="Toggle dark mode" type="button">
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+        <path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z"/>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px">
+        <path d="M480-280q-83 0-141.5-58.5T280-480q0-83 58.5-141.5T480-680q83 0 141.5 58.5T680-480q0 83-58.5 141.5T480-280ZM200-440H40v-80h160v80Zm720 0H760v-80h160v80ZM440-760v-160h80v160h-80Zm0 720v-160h80v160h-80ZM256-650l-101-97 57-59 96 100-52 56Zm492 496-97-101 53-55 101 97-57 59Zm-98-550 97-101 59 57-100 96-56-52ZM154-212l101-97 55 53-97 101-59-57Z"/>
+      </svg>
     </button>
-    
+
     <!-- Navigation Section -->
     <nav id="desktop-nav">
-        <div class="logo">Aman Kang</div>
-        <div class="logo-container">
-            <div class="logo"></div>
-        </div>        
-        <div>
-            <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </div>
+      <div class="logo">Aman Kang</div>
+      <div class="logo-container">
+        <div class="logo"></div>
+      </div>
+      <div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
     </nav>
 
     <nav id="hamburger-nav">
-        <div class="logo">Aman Kang</div>
-        <div class="hamburger-menu">
-            <div class="hamburger-icon" onclick="toggleMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <div class="menu-links">
-                <li><a href="#about" onclick="toggleMenu()">About</a></li>
-                <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-                <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-                <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-            </div>
+      <div class="logo">Aman Kang</div>
+      <div class="hamburger-menu">
+        <div class="hamburger-icon" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
         </div>
+        <div class="menu-links">
+          <li><a href="#about" onclick="toggleMenu()">About</a></li>
+          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
+          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
+          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
+        </div>
+      </div>
     </nav>
 
-    <!-- Profile Section -->
-    <section id="profile">
-        <div class="section__pic-container">
-            <img src="./Assets/profile-pic.png" alt="Aman Kang profile picture">
-        </div>
-        <div class="section__text">
-            <p class="section__text__p1">Hello, I'm</p>
-            <h1 class="title">Aman Kang</h1>
-            <h2 id="typewriter" class="section__text__p2"></h2>
-            <div class="btn-container">
-                <button class="btn btn-color-2" onclick="window.open('./assets/CV-Aman.pdf')">
-                    Download CV
-                </button>
-                <button class="btn btn-color-1" onclick="location.href='#contact'">
-                  Contact Info
-              </button>              
-            </div>
-            <div id="socials-container">
-                <img src="./Assets/github.png" alt="My Github profile" class="icon" onclick="location.href='https://github.com'" />
-                <img src="./Assets/linkedin.png" alt="My LinkedIn profile" class="icon" onclick="location.href='https://linkedin.com/in/aman-kang44/'" />
-            </div>
-        </div>
-        <div class="profile-timeline-container">
-            <div class="profile-line"></div>
-            <div class="profile-circle"></div>
-            <div class="profile-circle"></div>
-            <div class="profile-circle"></div>
-        </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#about'" />
-    </section>
+    <div class="fixed-top-line"></div>
+  </header>
 
-    <!-- About Section -->
-    <section id="about">
-        <p class="section__text__p1">Get To Know More</p>
-        <h1 class="title">About Me</h1>
-        <div class="section-container">
-            <!-- About Image / Emoji -->
-            <div class="section__pic-container">
-                <span class="about-emoji">👨🏾‍💻</span>
-            </div>
-            <!-- About Details -->
-            <div class="about-details-container">
-                <div class="about-containers">
-                    <div class="details-container">
-                        <img src="./assets/experience.png" alt="Experience icon" class="icon" />
-                        <h3>Technical Skills</h3>
-                        <ul style="list-style: none; padding: 0; margin: 0;">
-                            <li><strong>Programming Languages:</strong> Python, Java, JavaScript, C, C++, SQL</li>
-                            <li><strong>Databases:</strong> MySQL, D-Beaver, MongoDB, AWS, Azure</li>
-                            <li><strong>Data Visualization:</strong> Tableau, Excel</li>
-                            <li><strong>Version Control:</strong> Git, GitHub, GitLab</li>
-                            <li><strong>Productivity Tools:</strong> MS Office (Word, PowerPoint)</li>
-                            <li><strong>Cloud Computing:</strong> AWS, Azure</li>
-                        </ul>
-                    </div>
-                    <div class="details-container">
-                        <img src="./assets/education.png" alt="Education icon" class="icon" />
-                        <h3>Education</h3>
-                        <p>B.Sc. Computer Science at Newcastle University <br>On track to recieve a first class honors</p>
-                    </div>
-                </div>
-                <!-- About Text -->
-                <div class="text-container">
-                    <p>I am an ambitious BSc Computer Science student at Newcastle University, currently on track to achieve a first-class degree. Passionate about software engineering, I have developed a strong foundation in Python, Java, C, and JavaScript through diverse personal and academic projects. My interests lie at the intersection of technology and finance, where I explore AI-driven financial solutions, cloud computing, and automation. I have gained hands-on experience through insight events with firms like BlackRock and Baillie Gifford, deepening my understanding of fintech and technological innovation in financial services.
-
-                        Beyond my technical pursuits, I am passionate about fitness, regularly going to the gym and running to maintain a disciplined and focused mindset. I also actively manage my investment portfolio, staying up to date with market trends and financial strategies. My experience includes developing a PageRank algorithm in Python, optimising search efficiency by 55% and enhancing my understanding of graph theory and algorithm performance. With a strong drive for continuous learning, I am eager to contribute to impactful projects that blend technology with business efficiency.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#experience'" />
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience">
-        <p class="section__text__p1">Explore My</p>
-        <h1 class="title">Experience and Certifications</h1>
-        <div class="time-line">
-            <div class="container">
-                <div class="text-content">
-                    <h2>JD Sports PLC </h2>
-                    <p>Increased KPI sales by 20% through effective customer engagement, upselling, and meeting targets. Proactively addressed inquiries and resolved complaints with empathetic communication, ensuring a personalised shopping experience..</p>
-                </div>
-            </div>
-            <div class="container" style="--dly:1s">
-                <div class="text-content">
-                    <h2>Accenture Virtual Experience Programme with Forage</h2>
-                    <p>Completed a simulation gaining insight into Accenture’s five core business services—Strategy & Consulting, Technology, Interactive, and Operations—by developing a technology solution using agile methodology. Analysed outsourcing and user data to optimise technology delivery, aligning improvements with client operational goals to enhance efficiency.</p>
-                </div>
-            </div>
-            <div class="container" style="--dly:2s">
-                <div class="text-content">
-                    <h2>Nomura Technology Simulation Day</h2>
-                    <p>Achieved 1st place in delivering technical solutions by leading a team to design an AI-driven system for automating staff presentations and integrating RTO and RPO recovery plans. Gained insight into Nomura’s technology strategies, exploring Risk Pads, REST APIs, and tools like Solace and Red Hat for scalability and resilience.</p>
-                </div>
-            </div>
-            <div class="container" style="--dly:3s">
-                <div class="text-content">
-                    <h2>JP Morgan Software Engineering Virtual Experience Program with Forage </h2>
-                    <p>Integrated a stock price data feed for JPMorgan Chase traders in a simulation project. Configured a Python development environment, managed dependencies, and resolved client data feed issues. Ensured system reliability and accuracy through unit testing.</p>
-                </div>
-            </div>
-            <div class="container" style="--dly:4s">
-                <div class="text-content">
-                    <h2>Baillie Gifford Insight Event</h2>
-                    <p>Explored Baillie Gifford’s R&D strategy for staying ahead in emerging technologies and finance. Investigated AI applications in financial processes, particularly for documentation search and sorting. Learned that AI adoption boosts operational efficiency by 30%, highlighting automation’s impact on workflow optimisation.</p>
-                </div>
-            </div>
-            <div class="container" style="--dly:5s">
-                <div class="text-content">
-                    <h2>Technology Intern</h2>
-                    <p>Achieved a top 1% grade nationwide in my A-Level project, demonstrating advanced analytical thinking and problem-solving. Assisted in managing multi-school data and observed technical issue resolution, reinforcing the importance of working under time constraints.</p>
-                </div>
-            </div>
-        </div> 
-        <img src="./assets/arrow.png" alt="Arrow icon" class="icon arrow" onclick="location.href='./#projects'" />
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <p class="section__text__p1">Browse My Recent</p>
-        <h1 class="title">Projects</h1>
-        <div class="card-container">
-            <div class="card">
-                <div class="card-background" style="background-image: url('assets/pending.png');"></div>
-                <div class="content">
-                    <div class="card-category">Project 1</div>
-                    <h3 class="card-heading">Pending</h3>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-background" style="background-image: url('assets/pending.png');"></div>
-                <div class="content">
-                    <div class="card-category">Project 2</div>
-                    <h3 class="card-heading">Pending</h3>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-background" style="background-image: url('assets/pending.png');"></div>
-                <div class="content">
-                    <div class="card-category">Project 3</div>
-                    <h3 class="card-heading">Pending</h3>
-                </div>
-            </div>
-        </div>
+  <!-- Profile Section -->
+  <section id="profile">
+    <div class="section__pic-container">
+      <img src="./assets/profile.png" alt="Aman Kang profile picture" />
+    </div>
+    <div class="section__text">
+      <p class="section__text__p1">Hello, I'm</p>
+      <h1 class="title">Aman Kang</h1>
+      <h2 id="typewriter" class="section__text__p2"></h2>
+      <div class="btn-container">
+        <button class="btn btn-color-2" onclick="window.open('./assets/CV-Aman.pdf')">
+          Download CV
+        </button>
+        <button class="btn btn-color-1" onclick="location.href='#contact'">
+          Contact Info
+        </button>
+      </div>
+      <div id="socials-container">
         <img
-        src="./assets/arrow.png"
-        alt="Arrow icon"
-        class="icon arrow"
-        onclick="location.href='./#contact'"
-      />
-    </section>
+          src="./assets/github.png"
+          alt="My Github profile"
+          class="icon"
+          onclick="location.href='https://github.com'"
+        />
+        <img
+          src="./assets/linkedin.png"
+          alt="My LinkedIn profile"
+          class="icon"
+          onclick="location.href='https://linkedin.com/in/aman-kang44/'"
+        />
+      </div>
+    </div>
+    <div class="profile-timeline-container">
+      <div class="profile-line"></div>
+      <div class="profile-circle"></div>
+      <div class="profile-circle"></div>
+      <div class="profile-circle"></div>
+    </div>
+    <img
+      src="./assets/arrow.png"
+      alt="Arrow icon"
+      class="icon arrow"
+      onclick="location.href='./#about'"
+    />
+  </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <p class="section__text__p1">Get in Touch</p>
-        <h1 class="title">Contact Me</h1>
-        <div class="contact-info-upper-container">
-            <div class="contact-info-container">
-                <img src="./assets/email.png" alt="Email icon" class="icon contact-icon email-icon" />
-                <p><a href="mailto:AmanSinghk@icloud.com">AmanSinghk@icloud.com</p>
-            </div>
-            <div class="contact-info-container">
-                <img src="./assets/linkedin.png" alt="LinkedIn icon" class="icon contact-icon" />
-                <p><a href="https://www.linkedin.com/in/aman-kang44/">LinkedIn</a></p>
-            </div>
+  <!-- About Section -->
+  <section id="about">
+    <p class="section__text__p1">Get To Know More</p>
+    <h1 class="title">About Me</h1>
+    <div class="section-container">
+      <!-- About Image / Emoji -->
+      <div class="section__pic-container">
+        <span class="about-emoji">👨🏾‍💻</span>
+      </div>
+      
+        <!-- About Text -->
+        <div class="text-container about-text">
+          <p>
+            Hello, I’m <span class="highlight-green">Aman</span>, a
+            <span class="highlight-green">Microsoft Services Technology Consultant</span>
+            with a strong interest in <span class="highlight-green">Cloud</span> and
+            <span class="highlight-green">AI</span>.
+          </p>
+        
+          <p>
+            I’m currently studying <span class="highlight-green">Computer Science</span>
+            at <span class="highlight-green">Newcastle University</span> and on track for
+            a <span class="highlight-green">first-class honours</span> degree. Notable
+            modules include <span class="highlight-green">Algorithm Analysis</span>,
+            <span class="highlight-green">Data Science &amp; Machine Learning</span>,
+            <span class="highlight-green">Software Design</span>, and
+            <span class="highlight-green">Computer Architecture</span>.
+          </p>
+        
+          <p>
+            Outside of university, I regularly take part in
+            <span class="highlight-green">team-based sporting events</span>, which have
+            helped me develop <span class="highlight-green">discipline</span>,
+            <span class="highlight-green">resilience</span>, and
+            <span class="highlight-green">clear communication</span>. I’m keen to apply
+            my <span class="highlight-green">technical foundation</span> and
+            <span class="highlight-green">growth mindset</span> to keep improving both my
+            <span class="highlight-green">interpersonal</span> and
+            <span class="highlight-green">technical</span> skills.
+          </p>
         </div>
-    </section>
+        
 
-    <!-- Footer Section -->
-    <footer>
-        <nav>
-            <div class="nav-links-container">
-                <ul class="nav-links">
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#experience">Experience</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
+     
+      </div>
+    </div>
+    <img
+      src="./assets/arrow.png"
+      alt="Arrow icon"
+      class="icon arrow"
+      onclick="location.href='./#skills'"
+    />
+  </section>
+
+  <!-- Skills Section -->
+<section id="skills" class="skills-section">
+  <p class="section__text__p1">Explore My</p>
+  <h1 class="title">Skills</h1>
+
+  <div class="skills-panel">
+    <canvas id="skills-canvas" class="skills-canvas" aria-hidden="true"></canvas>
+
+    <div class="skills-content">
+      <div class="skills-grid">
+        <!-- Technical -->
+        <div class="skills-col">
+          <h2>Technical Skills</h2>
+
+          <div class="skill-group">
+            <h4>Programming</h4>
+            <div class="pills">
+              <span class="pill">Python</span>
+              <span class="pill">Java</span>
+              <span class="pill">JavaScript</span>
+              <span class="pill">C</span>
+              <span class="pill">C++</span>
+              <span class="pill">SQL</span>
             </div>
-        </nav>
-        <p>Copyright &#169; 2025 Aman Kang. All Rights Reserved.</p>
-    </footer>
+          </div>
 
-    <!-- Scripts -->
-    <script src="script.js"></script>
+          <div class="skill-group">
+            <h4>Databases</h4>
+            <div class="pills">
+              <span class="pill">MySQL</span>
+              <span class="pill">MongoDB</span>
+              <span class="pill">DBeaver</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>Cloud</h4>
+            <div class="pills">
+              <span class="pill">AWS</span>
+              <span class="pill">Azure</span>
+            </div>
+          </div>
+
+          <div class="skill-group">
+            <h4>Tools</h4>
+            <div class="pills">
+              <span class="pill">Git</span>
+              <span class="pill">GitHub</span>
+              <span class="pill">GitLab</span>
+              <span class="pill">Tableau</span>
+              <span class="pill">Excel</span>
+              <span class="pill">PowerPoint</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Soft -->
+        <div class="skills-col">
+          <h2>Soft Skills</h2>
+
+          <div class="skill-group">
+            <h4>How I work</h4>
+            <div class="pills">
+              <span class="pill">Communication</span>
+              <span class="pill">Stakeholder Management</span>
+              <span class="pill">Problem Solving</span>
+              <span class="pill">Adaptability</span>
+              <span class="pill">Continuous Learning</span>
+              <span class="pill">Teamwork</span>
+              <span class="pill">Leadership</span>
+              <span class="pill">Time Management</span>
+            </div>
+          </div>
+
+          
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <img
+    src="./assets/arrow.png"
+    alt="Arrow icon"
+    class="icon arrow"
+    onclick="location.href='./#experience'"
+  />
+
+
+
+
+  <!-- Experience Section -->
+  <section id="experience">
+    <p class="section__text__p1">Explore My</p>
+    <h1 class="title">Experience and Certifications</h1>
+    <div class="time-line">
+      <div class="container">
+        <div class="text-content">
+          <h2>JD Sports PLC</h2>
+          <p>
+            Increased KPI sales by 20% through effective customer engagement, upselling, and meeting targets.
+            Proactively addressed inquiries and resolved complaints with empathetic communication, ensuring a
+            personalised shopping experience..
+          </p>
+        </div>
+      </div>
+      <div class="container" style="--dly: 1s;">
+        <div class="text-content">
+          <h2>Accenture Virtual Experience Programme with Forage</h2>
+          <p>
+            Completed a simulation gaining insight into Accenture’s five core business services—Strategy & Consulting,
+            Technology, Interactive, and Operations—by developing a technology solution using agile methodology.
+            Analysed outsourcing and user data to optimise technology delivery, aligning improvements with client
+            operational goals to enhance efficiency.
+          </p>
+        </div>
+      </div>
+      <div class="container" style="--dly: 2s;">
+        <div class="text-content">
+          <h2>Nomura Technology Simulation Day</h2>
+          <p>
+            Achieved 1st place in delivering technical solutions by leading a team to design an AI-driven system for
+            automating staff presentations and integrating RTO and RPO recovery plans. Gained insight into Nomura’s
+            technology strategies, exploring Risk Pads, REST APIs, and tools like Solace and Red Hat for scalability and
+            resilience.
+          </p>
+        </div>
+      </div>
+      <div class="container" style="--dly: 3s;">
+        <div class="text-content">
+          <h2>JP Morgan Software Engineering Virtual Experience Program with Forage</h2>
+          <p>
+            Integrated a stock price data feed for JPMorgan Chase traders in a simulation project. Configured a Python
+            development environment, managed dependencies, and resolved client data feed issues. Ensured system
+            reliability and accuracy through unit testing.
+          </p>
+        </div>
+      </div>
+      <div class="container" style="--dly: 4s;">
+        <div class="text-content">
+          <h2>Baillie Gifford Insight Event</h2>
+          <p>
+            Explored Baillie Gifford’s R&D strategy for staying ahead in emerging technologies and finance. Investigated
+            AI applications in financial processes, particularly for documentation search and sorting. Learned that AI
+            adoption boosts operational efficiency by 30%, highlighting automation’s impact on workflow optimisation.
+          </p>
+        </div>
+      </div>
+      <div class="container" style="--dly: 5s;">
+        <div class="text-content">
+          <h2>Technology Intern</h2>
+          <p>
+            Achieved a top 1% grade nationwide in my A-Level project, demonstrating advanced analytical thinking and
+            problem-solving. Assisted in managing multi-school data and observed technical issue resolution, reinforcing
+            the importance of working under time constraints.
+          </p>
+        </div>
+      </div>
+    </div>
+    <img
+      src="./assets/arrow.png"
+      alt="Arrow icon"
+      class="icon arrow"
+      onclick="location.href='./#projects'"
+    />
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <p class="section__text__p1">Browse My Recent</p>
+    <h1 class="title">Projects</h1>
+    <div class="card-container">
+      <div class="card">
+        <div class="card-background" style="background-image: url('assets/pending.png');"></div>
+        <div class="content">
+          <div class="card-category">Project 1</div>
+          <h3 class="card-heading">Pending</h3>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-background" style="background-image: url('assets/pending.png');"></div>
+        <div class="content">
+          <div class="card-category">Project 2</div>
+          <h3 class="card-heading">Pending</h3>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-background" style="background-image: url('assets/pending.png');"></div>
+        <div class="content">
+          <div class="card-category">Project 3</div>
+          <h3 class="card-heading">Pending</h3>
+        </div>
+      </div>
+    </div>
+    <img
+      src="./assets/arrow.png"
+      alt="Arrow icon"
+      class="icon arrow"
+      onclick="location.href='./#contact'"
+    />
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <p class="section__text__p1">Get in Touch</p>
+    <h1 class="title">Contact Me</h1>
+    <div class="contact-info-upper-container">
+      <div class="contact-info-container">
+        <img src="./assets/email.png" alt="Email icon" class="icon contact-icon email-icon" />
+        <p><a href="mailto:AmanSinghk@icloud.com">AmanSinghk@icloud.com</a></p>
+      </div>
+      <div class="contact-info-container">
+        <img src="./assets/linkedin.png" alt="LinkedIn icon" class="icon contact-icon" />
+        <p><a href="https://www.linkedin.com/in/aman-kang44/">LinkedIn</a></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <nav>
+      <div class="nav-links-container">
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <p>Copyright &#169; 2025 Aman Kang. All Rights Reserved.</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="script.js"></script>
 </body>
-
 </html>

@@ -1,137 +1,123 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
 
-/* Define all colour variables on :root */
+/* =========================
+   THEME VARIABLES
+========================= */
 :root {
-  --font-family: 'Poppins', sans-serif;
+  --font-family: "Poppins", sans-serif;
+
   --color-text: rgb(85, 85, 85);
   --color-link: black;
   --color-link-hover: grey;
   --color-link-underline: rgb(181, 181, 181);
-  --color-nav-gradient-start: black;
-  --color-nav-gradient-end: #d3d3d3;
+
   --color-nav-bg: white;
   --color-hamburger-bg: black;
+
   --color-border-dark: rgb(53, 53, 53);
   --color-border-light: rgb(163, 163, 163);
+
   --color-btn-hover-bg: rgb(0, 0, 0);
   --color-btn-hover-text: white;
   --color-btn2-hover-bg: rgb(53, 53, 53);
   --color-btn2-hover-text: white;
   --color-btn2-hover-border: rgb(255, 255, 255);
+
   --color-details-bg: white;
   --color-experience-subtitle: rgb(85, 85, 85);
+
   --color-card-bg: #f8f8f8;
   --color-card-shadow: rgba(0, 0, 0, 0.1);
   --color-content-bg: rgba(255, 255, 255, 0.8);
   --color-card-text: #333;
+
   --color-contact-bg: rgb(250, 250, 250);
+
   --color-title-gradient-start: black;
   --color-title-gradient-end: #d3d3d3;
+
   --color-timeline-gradient-start: #ff00e1;
   --color-timeline-gradient-end: #ddff00;
+
   --color-text-content-shadow: #191919;
   --color-text-content-bg-hover: #f5f5f5;
-   --purple-gradient-start: #6a0dad;
-  --purple-gradient-end: #b889ff; /* Softer, lighter iris purple */
+
+  --purple-gradient-start: #6a0dad;
+  --purple-gradient-end: #b889ff;
+
+  /* IMPORTANT: header height must be stable for fixed header */
+  --header-height: 96px; /* desktop default */
 }
 
-
-
+/* =========================
+   DARK MODE
+========================= */
 .darkmode {
-  background-color: #121212;;
+  background-color: #121212;
   color: white;
-  /* Override custom properties for dark mode */
-  --color-bg: #121212;;
+
+  --color-nav-bg: #121212;
   --color-hamburger-bg: white;
+
   --color-text: white;
   --color-link: white;
-  --color-nav-bg:#121212;;
-  --color-nav-gradient-start: var(--purple-gradient-start);
-  --color-nav-gradient-end: var(--purple-gradient-end);
+
   --color-title-gradient-start: var(--purple-gradient-start);
   --color-title-gradient-end: var(--purple-gradient-end);
-  --color-contact-bg: #121212;;
+
+  --color-contact-bg: #121212;
+
   --color-border-dark: white;
   --color-border-light: white;
 }
 
-.dark-mode a {
-  color: white;
-}
-
-.dark-mode nav::after {
-  background: linear-gradient(90deg, var(--purple-gradient-start), var(--purple-gradient-end));
-}
-
-.dark-mode .btn-color-1:hover,
-.dark-mode .btn-color-2:hover {
-  background: linear-gradient(90deg, var(--purple-gradient-start), var(--purple-gradient-end));
-  color: white;
-  border: none;
+.darkmode a {
+  color: var(--color-link);
 }
 
 .darkmode .btn-color-1 {
-  background: linear-gradient(90deg, var(--purple-gradient-start), var(--purple-gradient-end));
+  background: linear-gradient(
+    90deg,
+    var(--purple-gradient-start),
+    var(--purple-gradient-end)
+  );
   color: white !important;
   border: none;
-  padding: 1rem; /* Note: horizontal padding is larger here */
+  padding: 1rem;
   font-weight: bold;
   border-radius: 2rem;
-  text-align: center;
-  width: 8rem; /* Ensures overall width is 8rem */
+  width: 8rem;
 }
 
 .darkmode .btn-color-2 {
-  border: 0.1rem solid transparent; /* same thickness as in light mode */
+  border: 0.1rem solid transparent;
   border-radius: 2rem;
-  padding: 1rem ;
+  padding: 1rem;
   color: white !important;
   font-weight: bold;
-  text-align: center;
-  width: 8rem; /* Matches the light mode button width */
-  background: 
-    linear-gradient(#121212, #121212) padding-box, /* Matches dark mode background */
-    linear-gradient(90deg, var(--purple-gradient-start), var(--purple-gradient-end)) border-box;
+  width: 8rem;
+  background: linear-gradient(#121212, #121212) padding-box,
+    linear-gradient(90deg, var(--purple-gradient-start), var(--purple-gradient-end))
+      border-box;
   background-clip: padding-box, border-box;
 }
 
-.darkmode .arrow {
-  filter: invert(1); /* Turns black icons white */
-}
-
+.darkmode .arrow,
 .darkmode .icon {
-  filter: invert(1); /* Turns black icons white */
-}
-
-.darkmode .about-containers .details-container {
-  background: linear-gradient(90deg, var(--purple-gradient-start), var(--purple-gradient-end));
-  color: white;
-  border: none;
-  transition: background 0.3s ease-in-out;
-}
-
-.darkmode .text-content {
-  border: 2px solid transparent;
-  border-radius: 10px;
-  background-clip: padding-box, border-box;
-  background: 
-    linear-gradient(#121212, #121212) padding-box,  /* Slightly lighter black */
-    linear-gradient(90deg, var(--purple-gradient-start), var(--purple-gradient-end)) border-box;
-  color: white;
-  transition: border 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.3s ease-in-out;
-  box-shadow: 0 0 10px rgba(186, 85, 211, 0.5); /* Soft purple glow */
-}
-
-/* Glowing Hover Effect */
-.darkmode .text-content:hover {
-  box-shadow: 0 0 30px rgba(186, 85, 211, 0.8); /* Stronger purple glow on hover */
-  transform: scale(1.02);
+  filter: invert(1);
 }
 
 .darkmode .fixed-top-line {
-  background: linear-gradient(90deg, var(--purple-gradient-start), var(--purple-gradient-end));
+  background: linear-gradient(
+    90deg,
+    var(--purple-gradient-start),
+    var(--purple-gradient-end)
+  );
 }
-/* Global Reset */
+
+/* =========================
+   GLOBAL RESET
+========================= */
 * {
   margin: 0;
   padding: 0;
@@ -139,13 +125,16 @@
   font-family: var(--font-family);
 }
 
-/* Base Styles */
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  /* Inherited font-family from global reset */
+  background: var(--color-nav-bg);
+  color: var(--color-text);
+
+  /* KEY: account for fixed header so content doesn't go under it */
+  padding-top: var(--header-height);
 }
 
 p {
@@ -169,7 +158,102 @@ a:hover {
   text-decoration-color: var(--color-link-underline);
 }
 
-/* Desktop Navigation */
+/* =========================
+   HEADER (FIXED) + TOP LINE
+========================= */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--header-height);
+  z-index: 9999;
+  background: var(--color-nav-bg);
+}
+
+/* thin gradient line should NEVER steal taps */
+.fixed-top-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: linear-gradient(90deg, black, grey);
+  z-index: 9999;
+  pointer-events: none;
+}
+
+/* =========================
+   THEME SWITCH (STUCK IN NAV BAR)
+   KEY FIX: ABSOLUTE INSIDE FIXED HEADER
+========================= */
+button#theme-switch {
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  border-radius: 50%;
+  background-color: grey;
+
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  /* IMPORTANT:
+     - DO NOT use fixed here if you want it to live in the navbar area.
+     - Absolute inside .site-header makes it stay with the fixed navbar. */
+  position: absolute;
+  top: 50%;
+  right: 20px;
+
+  /* Keep it vertically centered in the header */
+  transform: translateY(-50%);
+  transform-origin: center;
+
+  border: none;
+  cursor: pointer;
+
+  z-index: 100000;
+  pointer-events: auto;
+
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hover MUST keep translateY(-50%) so it doesn't "jump" */
+button#theme-switch:hover {
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.darkmode button#theme-switch {
+  background-color: var(--purple-gradient-end);
+}
+
+.darkmode button#theme-switch:hover {
+  transform: translateY(-50%) scale(1.08);
+  box-shadow: 0 0 15px rgba(186, 85, 211, 0.8);
+}
+
+#theme-switch svg {
+  fill: var(--color-text);
+  transition: fill 0.3s ease-in-out;
+}
+
+#theme-switch svg:last-child {
+  display: none;
+}
+
+.darkmode #theme-switch svg:first-child {
+  display: none;
+}
+
+.darkmode #theme-switch svg:last-child {
+  display: block;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
 nav,
 .nav-links {
   display: flex;
@@ -178,18 +262,20 @@ nav,
 nav {
   justify-content: space-around;
   align-items: center;
-  height: 17vh;
-  position: relative; /* Ensures positioning */
+  height: var(--header-height);
+  position: relative;
+
+  /* space so theme button doesn't overlap */
+  padding-right: 90px;
+  z-index: 9999;
 }
 
-.fixed-top-line {
-  position: absolute;
-  top: 120px; /* Adjust this value to move it down */
-  left: 0;
-  width: 100%;
-  height: 2px; /* Adjust thickness */
-  background: linear-gradient(90deg, black, grey); /* Black to Grey gradient */
-  z-index: 1000; /* Keeps it on top */
+/* Make sure nothing in header blocks clicks */
+#desktop-nav,
+#hamburger-nav,
+#desktop-nav *,
+#hamburger-nav * {
+  pointer-events: auto;
 }
 
 .nav-links {
@@ -198,20 +284,15 @@ nav {
   font-size: 1.5rem;
 }
 
-/* Logo and Typing Effect */
+/* Logo + Typewriter */
 .logo-container {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: flex-start;
 }
 
 .logo {
   font-size: 2rem;
-}
-
-.typing-container {
-  text-align: left;
-  margin-top: 10px;
 }
 
 #typewriter {
@@ -221,27 +302,20 @@ nav {
   border-right: 2px solid var(--color-link);
   white-space: nowrap;
   overflow: hidden;
-  animation: typing 4s steps(30, end), blink-caret 0.75s step-end infinite;
 }
 
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: var(--color-link); }
-}
-
-/* Hamburger Menu */
+/* =========================
+   HAMBURGER MENU
+========================= */
 #hamburger-nav {
   display: none;
 }
 
 .hamburger-menu {
   position: relative;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .hamburger-icon {
@@ -251,6 +325,9 @@ nav {
   height: 24px;
   width: 30px;
   cursor: pointer;
+  position: relative;
+
+  z-index: 100001;
 }
 
 .hamburger-icon span {
@@ -260,16 +337,25 @@ nav {
   transition: all 0.3s ease-in-out;
 }
 
+/* Dropdown */
 .menu-links {
   position: absolute;
   top: 100%;
+  margin-top: -2px;         /* goes in front of the line */
   right: 0;
-  background-color: var(--color-nav-bg);
-  width: fit-content;
+
+  background: transparent;  /* transparent dropdown */
+  box-shadow: none;
+  border-radius: 0;
+
+  width: max-content;
   max-height: 0;
   overflow: hidden;
-  transition: all 0.3s ease-in-out;
+  transition: max-height 0.3s ease-in-out;
+
+  z-index: 100002;
 }
+
 
 .menu-links li {
   list-style: none;
@@ -277,16 +363,27 @@ nav {
 
 .menu-links a {
   display: block;
-  padding: 10px;
+  padding: 12px 14px;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: var(--color-link);
   text-decoration: none;
-  transition: all 0.3s ease-in-out;
+
+  background: transparent; /* keeps it not a block */
+  transition: transform 0.2s ease, background-color 0.2s ease;
+
+  
 }
 
+.menu-links a:hover {
+  transform: scale(1.06);
+  background-color: transparent;
+}
+
+
+
 .menu-links.open {
-  max-height: 300px;
+  max-height: 340px;
 }
 
 .hamburger-icon.open span:first-child {
@@ -301,12 +398,14 @@ nav {
   transform: rotate(-45deg) translate(10px, -5px);
 }
 
-/* Section Base Styles */
+/* =========================
+   SECTIONS
+========================= */
 section {
-  padding-top: 4vh;
-  height: 96vh;
-  margin: 0 10rem;
+  padding-top: 10vh;
   min-height: fit-content;
+  margin: 0 10rem;
+  height: 96vh;
 }
 
 .section-container {
@@ -315,15 +414,13 @@ section {
   height: 80%;
 }
 
-/* PROFILE SECTION */
+/* PROFILE */
 #profile {
   display: flex;
   justify-content: center;
   gap: 5rem;
   height: 80vh;
 }
-
-
 
 #profile .section__pic-container {
   height: 300px;
@@ -334,13 +431,7 @@ section {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.profile-pic-container {
-  display: flex;
-  height: 300px;
-  width: 300px;
-  margin: auto 0;
+  border-radius: 50%;
 }
 
 .section__text {
@@ -361,6 +452,7 @@ section {
   margin: 0.5rem 0 1rem 0;
 }
 
+/* SOCIALS */
 #socials-container {
   display: flex;
   justify-content: center;
@@ -368,16 +460,14 @@ section {
   gap: 1rem;
 }
 
-/* ICONS */
 .icon {
   cursor: pointer;
   height: 2rem;
-  transition: transform 0.3s ease; 
+  transition: transform 0.3s ease;
 }
 
-/* Apply the hover effect */
 #socials-container .icon:hover {
-  transform: scale(1.2); 
+  transform: scale(1.2);
 }
 
 /* BUTTONS */
@@ -417,28 +507,31 @@ section {
   border: var(--color-btn2-hover-border) 0.1rem solid;
 }
 
-/* ABOUT SECTION */
+/* ABOUT */
 #about {
   position: relative;
 }
+
+.about-text p + p {
+  margin-top: 1rem; /* line space between paragraphs */
+}
+
+.highlight-green {
+  color: #6a0dad;   
+  font-weight: 600;
+}
+
 
 .about-containers {
   display: flex;
   gap: 2rem;
   margin: 2rem 0;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .about-details-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
-}
-
-.arrow {
-  position: absolute;
-  right: -5rem;
-  bottom: 2.5rem;
 }
 
 .details-container {
@@ -451,13 +544,65 @@ section {
   text-align: center;
 }
 
-/* Retained for About section images */
 .section__pic-container {
   height: 400px;
   width: 400px;
   margin: auto 0;
 }
-/* EXPERIENCE SECTION */
+
+.arrow {
+  position: absolute;
+  right: -5rem;
+  bottom: 2.5rem;
+}
+
+/* ABOUT EMOJI */
+.about-emoji {
+  font-size: 12rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.about-emoji:hover {
+  transform: scale(1.2);
+}
+
+/* ABOUT: align emoji with text */
+#about .section-container {
+  align-items: center; /* centers left and right content vertically */
+}
+
+#about .section__pic-container {
+  margin: 0;                /* remove auto vertical centering behaviour */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* small nudge up (tweak the px if needed) */
+#about .about-emoji {
+  transform: translateY(-20px);
+}
+
+
+/* Reduce empty space under "About Me" */
+#about {
+  height: auto;         
+  min-height: auto;
+  padding-top: 1vh;      
+  padding-bottom: 0.75rem;
+}
+
+/* Pull the content up closer to the heading */
+#about .section-container {
+  margin-top: 1.5rem;    /* reduce space under the title */
+}
+
+
+/* EXPERIENCE */
 #experience {
   position: relative;
 }
@@ -495,18 +640,21 @@ article .icon {
   cursor: default;
 }
 
-/* PROJECTS SECTION */
-.section-title {
+/* TITLE */
+.title {
+  font-size: 3rem;
   text-align: center;
-  font-size: 2.5rem;
-  font-weight: 600;
-  margin-top: 6rem;
-  margin-bottom: 5rem;
-  background: linear-gradient(90deg, var(--color-title-gradient-start), var(--color-title-gradient-end));
+  font-weight: bold;
+  background: linear-gradient(
+    90deg,
+    var(--color-title-gradient-start),
+    var(--color-title-gradient-end)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
+/* PROJECTS */
 .projects {
   display: flex;
   flex-direction: column;
@@ -589,23 +737,7 @@ article .icon {
   margin: 0;
 }
 
-#projects {
-  position: relative; /* Ensures arrow positions correctly inside projects */
-}
-
-#projects .arrow {
-  position: absolute;
-  right: -5rem; /* Matches the existing arrow position */
-  bottom: 2.5rem; /* Same bottom spacing */
-  width: 34px; /* Ensure size consistency */
-  height: auto;
-  cursor: pointer;
-  z-index: 1000; /* Ensure it's above other elements */
-  display: block !important;
-  visibility: visible !important;
-}
-
-/* CONTACT SECTION */
+/* CONTACT */
 #contact {
   display: flex;
   justify-content: center;
@@ -644,7 +776,7 @@ article .icon {
   height: 2.5rem;
 }
 
-/* FOOTER SECTION */
+/* FOOTER */
 footer {
   height: 26vh;
   margin: 0 1rem;
@@ -654,31 +786,7 @@ footer p {
   text-align: center;
 }
 
-/* ABOUT EMOJI */
-.about-emoji {
-  font-size: 12rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 0.3s ease-in-out;
-  cursor: pointer;
-}
-
-.about-emoji:hover {
-  transform: scale(1.2);
-}
-
-/* TITLE (Final Version) */
-.title {
-  font-size: 3rem;
-  text-align: center;
-  font-weight: bold;
-  background: linear-gradient(90deg, var(--color-title-gradient-start), var(--color-title-gradient-end));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* EXPERIENCE TIMELINE */
+/* TIMELINE */
 .time-line {
   width: 1000px;
   margin: 100px auto;
@@ -690,27 +798,39 @@ footer p {
   position: absolute;
   right: 50%;
   top: 0;
-  height: 0;
+  height: 0;                 /* stays 0 until revealed */
   width: 5px;
-  background: linear-gradient(var(--color-timeline-gradient-start), var(--color-timeline-gradient-end));
+  background: linear-gradient(
+    var(--color-timeline-gradient-start),
+    var(--color-timeline-gradient-end)
+  );
   border-radius: 50px;
-  animation: LineAnimated 5s linear forwards;
   z-index: -1;
 }
 
+/* play the line animation when JS adds .is-visible */
+.time-line.is-visible::after {
+  animation: LineAnimated 1200ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+
 @keyframes LineAnimated {
-  0% { height: 0; }
-  100% { height: 100%; }
+  0% {
+    height: 0;
+  }
+  100% {
+    height: 100%;
+  }
 }
 
 .container {
   width: 50%;
   position: relative;
   padding: 10px 20px;
-  animation: Animate-Container 1s linear forwards;
-  opacity: 0;
-  animation-delay: var(--dly);
+  opacity: 1;      /* visible by default (better if JS is off) */
+  animation: none; /* reveal system will handle animation */
 }
+
 
 @keyframes Animate-Container {
   0% {
@@ -732,9 +852,12 @@ footer p {
   position: absolute;
   height: 20px;
   width: 20px;
-  background: linear-gradient(var(--color-timeline-gradient-start), var(--color-timeline-gradient-end));
+  background: linear-gradient(
+    var(--color-timeline-gradient-start),
+    var(--color-timeline-gradient-end)
+  );
   top: 0;
-  right: -7px;
+  right: -38.5px;
   border-radius: 50%;
   z-index: 10;
 }
@@ -744,9 +867,12 @@ footer p {
   position: absolute;
   height: 20px;
   width: 20px;
-  background: linear-gradient(var(--color-timeline-gradient-start), var(--color-timeline-gradient-end));
+  background: linear-gradient(
+    var(--color-timeline-gradient-start),
+    var(--color-timeline-gradient-end)
+  );
   top: 0;
-  left: -12.5px;
+  left: -38.5px;
   border-radius: 50%;
   z-index: 10;
 }
@@ -754,16 +880,44 @@ footer p {
 .text-content {
   padding: 20px 30px;
   border-radius: 10px;
-  box-shadow: 0 5px 10px var(--color-text-content-shadow);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+
+  /* gradient border */
+  border: 2px solid transparent;
+  background:
+    linear-gradient(var(--color-nav-bg), var(--color-nav-bg)) padding-box,
+    linear-gradient(
+      135deg,
+      var(--color-timeline-gradient-start),
+      var(--color-timeline-gradient-end)
+    ) border-box;
+
+  /* base shadow + subtle glow */
+  box-shadow:
+    0 5px 10px rgba(0, 0, 0, 0.35),
+    0 0 14px rgba(255, 0, 225, 0.25),
+    0 0 14px rgba(221, 255, 0, 0.18);
+
+  transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+  will-change: transform, box-shadow;
+
+  position: relative;
+  z-index: 1;
 }
 
+
 .text-content:hover {
-  transform: scale(1.02);
-  box-shadow: 0 7px 14px rgba(0, 0, 0, 0.2);
-  background-color: var(--color-text-content-bg-hover);
-  color: var(--color-link);
+  transform: scale(1.05);
+
+  /* bigger shadow + bigger glow (matches your timeline gradient) */
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.45),
+    0 0 30px rgba(255, 0, 225, 0.55),
+    0 0 30px rgba(221, 255, 0, 0.40);
+
+  /* slight “lift” without changing your theme colors */
+  filter: brightness(1.05);
 }
+
 
 .text-content h2 {
   font-size: 25px;
@@ -774,60 +928,203 @@ footer p {
   margin-top: 10px;
 }
 
-.time-line.animate-start::after {
-  height: 0;
-  animation: none;
+
+/* =========================
+   DARK MODE ABOUT CARDS (Purple Gradient)
+========================= */
+.darkmode .details-container {
+  background: linear-gradient(135deg, var(--purple-gradient-start), var(--purple-gradient-end));
+  border: none;
+  color: white;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+ }
+
+.darkmode .details-container h3,
+.darkmode .details-container p,
+.darkmode .details-container li,
+.darkmode .details-container strong {
+  color: white;
 }
 
-.time-line .container.animate-start {
+.darkmode .details-container img.icon {
+  filter: invert(1);
+}
+
+/* =========================
+   SCROLL ANIMATIONS (utilities)
+========================= */
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal.is-visible,
+  .parallax {
+    transition: none !important;
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+  }
+}
+
+/* Base reveal */
+.reveal {
   opacity: 0;
-  transform: translateY(30px);
-  animation: none;
+  transform: translateY(18px);
+  filter: blur(1.5px);
+  transition: opacity 600ms ease,
+              transform 600ms cubic-bezier(0.22, 1, 0.36, 1),
+              filter 450ms ease;
 }
 
-button#theme-switch {
-  height: 50px;
-  width: 50px;
-  padding: 0;
-  border-radius: 50%;
-  background-color: grey; 
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Direction / style variants */
+.reveal.from-left { transform: translateX(-28px); }
+.reveal.from-right { transform: translateX(28px); }
+
+.reveal.zoom { transform: scale(0.96); }
+.reveal.is-visible.zoom { transform: scale(1); }
+
+/* “Spring” reveal (About section) */
+.reveal.spring {
+  opacity: 0;
+  transform: translateY(22px) scale(0.985);
+  filter: blur(1.5px);
+}
+
+
+.reveal.spring.is-visible {
+  opacity: 1;
+  filter: blur(0);
+  animation: springIn 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes springIn {
+  0%   { transform: translateY(26px) scale(0.98); }
+  60%  { transform: translateY(-6px) scale(1.02); }
+  100% { transform: translateY(0) scale(1); }
+}
+
+/* Stagger helper (JS sets --stagger) */
+.reveal {
+  transition-delay: var(--stagger, 0ms);
+}
+
+/* Parallax helper */
+.parallax {
+  will-change: transform;
+  transform: translate3d(0, var(--parallaxY, 0px), 0);
+}
+
+/* =========================
+   SKILLS (Matrix-style background)
+========================= */
+:root {
+  --skills-matrix: rgba(184, 137, 255, 0.85); /* purple “rain” */
+  --skills-glow: rgba(184, 137, 255, 0.35);
+  --skills-panel-bg: #0b0b10;
+  --skills-text: #ffffff;
+}
+
+.skills-section {
+  height: fit-content;
+  padding-bottom: 6rem;
+}
+
+.skills-panel {
+  position: relative;
+  width: 100%;
+  border-radius: 22px;
+  overflow: hidden;
+
+  background: radial-gradient(circle at 20% 0%, rgba(184, 137, 255, 0.18), transparent 55%),
+              var(--skills-panel-bg);
+
+  border: 1px solid rgba(184, 137, 255, 0.22);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.45), 0 0 24px var(--skills-glow);
+}
+
+.skills-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35), rgba(0,0,0,0.78));
+  z-index: 1;
+}
+
+.skills-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.65;
+  z-index: 0;
+}
+
+.skills-content {
+  position: relative;
+  z-index: 2;
+  padding: 56px 44px;
+  color: var(--skills-text);
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+  align-items: start;
+}
+
+.skills-col h2 {
+  color: var(--skills-text);
+  font-size: 1.6rem;
+  margin-bottom: 18px;
+}
+
+.skill-group {
+  margin-bottom: 18px;
+}
+
+.skill-group h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 10px;
+}
+
+.pills {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.pill {
+  display: inline-flex;
   align-items: center;
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  cursor: pointer;
-  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  justify-content: center;
+
+  padding: 8px 12px;
+  border-radius: 999px;
+
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(184, 137, 255, 0.28);
+
+  color: #fff;
+  font-size: 0.95rem;
+
+  backdrop-filter: blur(6px);
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+  will-change: transform;
 }
 
-button#theme-switch:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3); 
-}
-
-.darkmode button#theme-switch {
-  background-color: var(--purple-gradient-end);
-}
-
-.darkmode button#theme-switch:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px rgba(186, 85, 211, 0.8); /* Stronger glow */
-}
-
-#theme-switch svg {
-  fill: var(--color-text);
-  transition: fill 0.3s ease-in-out;
-}
-
-#theme-switch svg:last-child {
-  display: none;
-}
-
-.darkmode #theme-switch svg:first-child {
-  display: none;
-}
-
-.darkmode #theme-switch svg:last-child {
-  display: block;
+.pill:hover {
+  transform: translateY(-2px);
+  border-color: rgba(184, 137, 255, 0.6);
+  box-shadow: 0 0 18px rgba(184, 137, 255, 0.35);
 }
