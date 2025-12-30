@@ -960,6 +960,45 @@ function addLoading(chatEl) {
 
   return wrap;
 }
+async function callAmanAiLLM(question, contexts) {
+  const res = await fetch("/.netlify/functions/aman-ai", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ question, contexts }),
+  });
+
+  const data = await res.json().catch(() => null);
+  return data && data.text ? String(data.text) : null;
+}
+
+function isAbusiveOrOffTopic(q) {
+  return /(idiot|stupid|dumb|moron|trash|hate|ugly)/i.test(q || "");
+}
+
+function retrieveTopContexts(question, index, k = 4) {
+  const qv = vectorizeQuery(question, index.idf);
+  const boosts = keywordBoost(question);
+
+  const scored = index.docs.map((doc, i) => {
+    const base = cosine(qv, index.vectors[i]);
+    const final = scoreDoc(doc, base, boosts);
+    return { doc, score: final };
+  });
+
+  scored.sort((a, b) => b.score - a.score);
+  const top = scored.slice(0, k);
+
+  const bestScore = top[0]?.score ?? 0;
+
+  // prepare minimal payload for LLM
+  const contexts = top.map((x) => ({
+    title: x.doc.title,
+    text: x.doc.text,
+    score: x.score,
+  }));
+
+  return { contexts, bestScore };
+}
 
 function initAmanAI() {
   const chat = $("#aman-ai-chat");
@@ -976,21 +1015,63 @@ function initAmanAI() {
     return ans.html;
   }
 
-  function handleSend(question) {
+  async function handleSend(question) {
     const q = (question || input.value || "").trim();
     if (!q) return;
-
+  
     addMsg(chat, "user", escapeHTML(q));
     input.value = "";
-
+  
+    // 1) Block abusive/off-topic prompts so they don't map to random docs
+    if (isAbusiveOrOffTopic(q)) {
+      addMsg(
+        chat,
+        "ai",
+        "I can help with questions about Aman’s experience, skills, projects, and education. Try: <em>“What’s Aman’s best cloud project?”</em>"
+      );
+      return;
+    }
+  
     const loading = addLoading(chat);
-
-    // tiny delay so UI feels natural
-    window.setTimeout(() => {
+  
+    // 2) Retrieve top contexts + confidence
+    const { contexts, bestScore } = retrieveTopContexts(q, index, 4);
+  
+    // If we’re not confident, ask a clarifying question instead of dumping projects
+    if (bestScore < 0.18) {
       loading.remove();
-      const html = respond(q);
-      addMsg(chat, "ai", html);
-    }, 220);
+      addMsg(
+        chat,
+        "ai",
+        `
+        <div>
+          I’m not fully sure which part you mean yet — is this about:
+          ${formatBullets([
+            "Work experience / roles",
+            "Projects",
+            "Skills",
+            "Education"
+          ])}
+          <div style="margin-top:10px;">Try asking: <em>“What roles has Aman done?”</em></div>
+        </div>
+        `
+      );
+      return;
+    }
+  
+    // 3) Try LLM (generative)
+    const llmText = await callAmanAiLLM(q, contexts);
+  
+    loading.remove();
+  
+    if (llmText) {
+      addMsg(chat, "ai", escapeHTML(llmText).replace(/\n/g, "<br>"));
+      return;
+    }
+  
+    // 4) Fallback: your existing local response logic
+    const html = respond(q);
+    addMsg(chat, "ai", html);
   }
 
   form.addEventListener("submit", (e) => {
