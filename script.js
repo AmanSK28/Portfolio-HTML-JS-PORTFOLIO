@@ -17,7 +17,7 @@ function toggleMenu() {
 const phrases = [
     "A software engineer",
     "A motivated athlete",
-    "A retail professional"
+    "AI and Cloud enthusiast"
 ];
 
 const typewriterElement = document.getElementById('typewriter');

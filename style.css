@@ -1346,3 +1346,26 @@ footer p {
   padding-left: 18px;
   padding-right: 18px;
 }
+
+
+/* Fix 1: tighten intro spacing */
+.aman-ai-intro {
+  margin: 0.6rem 0 1rem; /* reduces the gap under the title */
+}
+
+/* Fix 3: lists inside chat bubble (ul/ol) should not escape the bubble */
+.aman-ai-bubble ul,
+.aman-ai-bubble ol {
+  margin: 0.6rem 0;        /* remove large UA margins */
+  padding-left: 1.25rem;   /* indent bullets/nums inside bubble */
+}
+
+.aman-ai-bubble li {
+  margin: 0.25rem 0;
+}
+
+/* Keep bullets inside the bubble visually */
+.aman-ai-bubble {
+  overflow-wrap: anywhere;
+  overflow: hidden; /* prevents list markers/margins from spilling out */
+}
