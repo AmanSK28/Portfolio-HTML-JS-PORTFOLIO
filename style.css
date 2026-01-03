@@ -36,8 +36,8 @@
   --color-title-gradient-start: black;
   --color-title-gradient-end: #d3d3d3;
 
-  --color-timeline-gradient-start: #ff00e1;
-  --color-timeline-gradient-end: #ddff00;
+  --color-timeline-gradient-start: #2b2b2b;
+  --color-timeline-gradient-end: #b5b5b5;
 
   --color-text-content-shadow: #191919;
   --color-text-content-bg-hover: #f5f5f5;
@@ -114,6 +114,13 @@
     var(--purple-gradient-end)
   );
 }
+
+/* Dark mode restores your vibrant timeline gradient */
+.darkmode {
+  --color-timeline-gradient-start: #ff00e1;
+  --color-timeline-gradient-end: #ddff00;
+}
+
 
 /* =========================
    GLOBAL RESET
@@ -516,8 +523,15 @@ section {
   margin-top: 1rem; /* line space between paragraphs */
 }
 
+/* Light mode: bold only (no purple) */
 .highlight-green {
-  color: #6a0dad;   
+  color: inherit;
+  font-weight: 700;
+}
+
+/* Dark mode: keep your existing highlighted look */
+.darkmode .highlight-green {
+  color: var(--purple-gradient-end);
   font-weight: 600;
 }
 
@@ -904,6 +918,35 @@ footer p {
   z-index: 1;
 }
 
+/* =========================================
+   EXPERIENCE — LIGHT MODE: neutral hover/glow
+   (keeps dark mode gradient/glow unchanged)
+========================================= */
+body:not(.darkmode) .time-line .text-content {
+  /* neutral border (no purple) */
+  border: 1px solid rgba(0, 0, 0, 0.16) !important;
+
+  /* kill the gradient border backgrounds */
+  background: #ffffff !important;
+
+  /* neutral shadow instead of pink/purple glow */
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, 0.14) !important;
+}
+
+body:not(.darkmode) .time-line .text-content {
+  border: 2px solid transparent !important;
+  background:
+    linear-gradient(#ffffff, #ffffff) padding-box,
+    linear-gradient(135deg, rgba(0,0,0,0.20), rgba(0,0,0,0.06)) border-box !important;
+
+  box-shadow: 0 8px 18px rgba(0,0,0,0.14) !important;
+}
+
+body:not(.darkmode) .time-line .text-content:hover {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.18) !important;
+}
+
 
 .text-content:hover {
   transform: scale(1.05);
@@ -921,6 +964,15 @@ footer p {
 
 .text-content h2 {
   font-size: 25px;
+}
+
+.text-content .exp-date {
+  display: block;
+  margin: 6px 0 12px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  opacity: 0.85;
+  color: inherit;
 }
 
 .text-content p {
@@ -1023,7 +1075,11 @@ footer p {
 
 /* =========================
    SKILLS (Matrix-style background)
+   - Dark mode: EXACTLY as your original (unchanged)
+   - Light mode: neutral greys only (overrides)
 ========================= */
+
+/* ---- ORIGINAL (your existing dark-mode look) ---- */
 :root {
   --skills-matrix: rgba(184, 137, 255, 0.85); /* purple “rain” */
   --skills-glow: rgba(184, 137, 255, 0.35);
@@ -1129,8 +1185,60 @@ footer p {
   box-shadow: 0 0 18px rgba(184, 137, 255, 0.35);
 }
 
+/* ---- LIGHT MODE ONLY OVERRIDES (neutral greys) ---- */
+/* These ONLY apply when body does NOT have .darkmode */
+body:not(.darkmode) .skills-panel {
+  background: radial-gradient(circle at 20% 0%, rgba(0, 0, 0, 0.04), transparent 55%),
+              #f6f6f7;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.12);
+}
+
+/* LIGHT MODE: force binary digits to DARK GREY (removes purple tint) */
+body:not(.darkmode) {
+  --skills-matrix: rgba(60, 60, 60, 0.65);
+}
+
+body:not(.darkmode) .skills-panel::after {
+  background: linear-gradient(180deg, rgba(255,255,255,0.55), rgba(246,246,247,0.92));
+}
+
+body:not(.darkmode) .skills-content,
+body:not(.darkmode) .skills-col h2 {
+  color: #111;
+}
+
+body:not(.darkmode) .skill-group h4 {
+  color: rgba(0, 0, 0, 0.70);
+}
+
+body:not(.darkmode) .skills-canvas {
+  opacity: 0.85; /* lighter binary in light mode */
+}
+
+body:not(.darkmode) .pill {
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.16);
+  color: #111;
+  backdrop-filter: blur(6px);
+}
+
+body:not(.darkmode) .pill:hover {
+  border-color: rgba(0, 0, 0, 0.28);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.10);
+}
+
+
+
+
 /* =========================
    AMAN AI (client-side Q&A)
+========================= */
+
+/* =========================
+   AMAN AI (client-side Q&A)
+   Light mode = neutral greys
+   Dark mode = your purple theme (unchanged)
 ========================= */
 
 .sr-only {
@@ -1153,16 +1261,28 @@ footer p {
 .aman-ai-intro {
   text-align: center;
   max-width: 920px;
-  margin: 0.75rem auto 1.6rem auto;
+  margin: 0.6rem auto 1rem auto; /* tightened */
   line-height: 1.6;
 }
 
+/* =========================
+   PANEL
+========================= */
 .aman-ai-panel {
   max-width: 1100px;
   margin: 0 auto;
   border-radius: 22px;
   overflow: hidden;
+  padding: 22px;
 
+  /* default (light mode): neutral border + neutral shadow */
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: var(--color-nav-bg);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.14);
+}
+
+/* dark mode: keep your purple gradient border + glow */
+.darkmode .aman-ai-panel {
   border: 2px solid transparent;
   background:
     linear-gradient(var(--color-nav-bg), var(--color-nav-bg)) padding-box,
@@ -1171,8 +1291,6 @@ footer p {
   box-shadow:
     0 14px 40px rgba(0, 0, 0, 0.35),
     0 0 22px rgba(184, 137, 255, 0.25);
-
-  padding: 22px;
 }
 
 .aman-ai-meta {
@@ -1183,6 +1301,7 @@ footer p {
   margin-bottom: 14px;
 }
 
+/* Badge: light mode neutral, dark mode purple */
 .aman-ai-badge {
   display: inline-flex;
   align-items: center;
@@ -1191,8 +1310,17 @@ footer p {
   border-radius: 999px;
   font-size: 0.9rem;
   font-weight: 600;
-  color: white;
 
+  /* light mode */
+  color: #111;
+  background: rgba(0, 0, 0, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  box-shadow: none;
+}
+
+.darkmode .aman-ai-badge {
+  color: #fff;
+  border: none;
   background: linear-gradient(90deg, var(--purple-gradient-start), var(--purple-gradient-end));
   box-shadow: 0 0 18px rgba(184, 137, 255, 0.25);
 }
@@ -1205,6 +1333,9 @@ footer p {
   opacity: 0.95;
 }
 
+/* =========================
+   CHIPS
+========================= */
 .aman-ai-chips {
   display: flex;
   flex-wrap: wrap;
@@ -1214,44 +1345,62 @@ footer p {
 
 .ai-chip {
   appearance: none;
-  border: 1px solid rgba(184, 137, 255, 0.35);
-  background: rgba(184, 137, 255, 0.10);
-  color: var(--color-text);
   padding: 8px 12px;
   border-radius: 999px;
   font-size: 0.95rem;
   cursor: pointer;
   transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
-}
 
-.darkmode .ai-chip {
-  color: white;
-  background: rgba(184, 137, 255, 0.12);
+  /* light mode neutral */
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.04);
+  color: var(--color-text);
 }
 
 .ai-chip:hover {
   transform: translateY(-2px);
+  border-color: rgba(0, 0, 0, 0.30);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.10);
+}
+
+.ai-chip:focus-visible {
+  outline: 3px solid rgba(0, 0, 0, 0.35);
+  outline-offset: 2px;
+}
+
+/* dark mode stays purple */
+.darkmode .ai-chip {
+  color: white;
+  border: 1px solid rgba(184, 137, 255, 0.35);
+  background: rgba(184, 137, 255, 0.12);
+}
+
+.darkmode .ai-chip:hover {
   border-color: rgba(184, 137, 255, 0.65);
   box-shadow: 0 0 18px rgba(184, 137, 255, 0.28);
 }
 
-.ai-chip:focus-visible {
+.darkmode .ai-chip:focus-visible {
   outline: 3px solid rgba(184, 137, 255, 0.55);
-  outline-offset: 2px;
 }
 
+/* =========================
+   CHAT
+========================= */
 .aman-ai-chat {
   height: 320px;
   overflow: auto;
   border-radius: 16px;
   padding: 14px;
 
-  background: rgba(0, 0, 0, 0.04);
-  border: 1px solid rgba(184, 137, 255, 0.18);
+  /* light mode neutral */
+  background: rgba(0, 0, 0, 0.03);
+  border: 1px solid rgba(0, 0, 0, 0.14);
 }
 
 .darkmode .aman-ai-chat {
   background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(184, 137, 255, 0.18);
 }
 
 .aman-ai-msg {
@@ -1259,13 +1408,8 @@ footer p {
   margin: 10px 0;
 }
 
-.aman-ai-msg--user {
-  justify-content: flex-end;
-}
-
-.aman-ai-msg--ai {
-  justify-content: flex-start;
-}
+.aman-ai-msg--user { justify-content: flex-end; }
+.aman-ai-msg--ai { justify-content: flex-start; }
 
 .aman-ai-bubble {
   max-width: min(720px, 92%);
@@ -1273,19 +1417,46 @@ footer p {
   border-radius: 16px;
   line-height: 1.5;
   font-size: 0.98rem;
-  border: 1px solid rgba(184, 137, 255, 0.18);
+
+  /* Light mode defaults */
+  border: 1px solid rgba(0, 0, 0, 0.14);
+  background: rgba(255, 255, 255, 0.75);
+  color: #111;
+
+  overflow-wrap: anywhere;
+  overflow: hidden; /* prevents list markers/margins from spilling out */
 }
 
+/* AI bubble tint */
 .aman-ai-msg--ai .aman-ai-bubble {
+  background: rgba(0, 0, 0, 0.04);
+}
+
+/* User bubble: light mode neutral pill */
+.aman-ai-msg--user .aman-ai-bubble {
+  background: rgba(0, 0, 0, 0.14);
+  color: #111;
+  border: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+/* dark mode keeps your purple user bubble + AI tint */
+.darkmode .aman-ai-bubble {
+  border: 1px solid rgba(184, 137, 255, 0.18);
+  background: rgba(0, 0, 0, 0.18);
+  color: #fff;
+}
+
+.darkmode .aman-ai-msg--ai .aman-ai-bubble {
   background: rgba(184, 137, 255, 0.08);
 }
 
-.aman-ai-msg--user .aman-ai-bubble {
+.darkmode .aman-ai-msg--user .aman-ai-bubble {
   background: linear-gradient(90deg, rgba(106, 13, 173, 0.85), rgba(184, 137, 255, 0.78));
   color: white;
   border: 1px solid rgba(184, 137, 255, 0.25);
 }
 
+/* Loading dots */
 .aman-ai-bubble--loading {
   display: inline-flex;
   gap: 6px;
@@ -1298,8 +1469,14 @@ footer p {
   width: 7px;
   height: 7px;
   border-radius: 999px;
-  background: rgba(184, 137, 255, 0.85);
+
+  /* light mode dots neutral */
+  background: rgba(0, 0, 0, 0.55);
   animation: amanAiDots 900ms infinite ease-in-out;
+}
+
+.darkmode .aman-ai-bubble--loading .dot {
+  background: rgba(184, 137, 255, 0.85);
 }
 
 .aman-ai-bubble--loading .dot:nth-child(2) { animation-delay: 120ms; }
@@ -1310,6 +1487,9 @@ footer p {
   50% { transform: translateY(-3px); opacity: 1; }
 }
 
+/* =========================
+   INPUT
+========================= */
 .aman-ai-form {
   display: flex;
   gap: 10px;
@@ -1321,25 +1501,32 @@ footer p {
   min-width: 220px;
   padding: 12px 14px;
   border-radius: 14px;
-  border: 1px solid rgba(184, 137, 255, 0.28);
-  background: rgba(0, 0, 0, 0.04);
-  color: var(--color-text);
+
+  /* light mode neutral */
+  border: 1px solid rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.03);
+  color: #111;
 }
 
+.aman-ai-input::placeholder { opacity: 0.75; }
+
+.aman-ai-input:focus-visible {
+  outline: 3px solid rgba(0, 0, 0, 0.35);
+  outline-offset: 2px;
+}
+
+/* dark mode keeps your previous look */
 .darkmode .aman-ai-input {
+  border: 1px solid rgba(184, 137, 255, 0.28);
   background: rgba(255, 255, 255, 0.04);
   color: white;
 }
 
-.aman-ai-input::placeholder {
-  opacity: 0.75;
-}
-
-.aman-ai-input:focus-visible {
+.darkmode .aman-ai-input:focus-visible {
   outline: 3px solid rgba(184, 137, 255, 0.55);
-  outline-offset: 2px;
 }
 
+/* Send button sizing only (your existing button styles can handle colors) */
 .aman-ai-send {
   width: auto;
   min-width: 92px;
@@ -1347,25 +1534,15 @@ footer p {
   padding-right: 18px;
 }
 
-
-/* Fix 1: tighten intro spacing */
-.aman-ai-intro {
-  margin: 0.6rem 0 1rem; /* reduces the gap under the title */
-}
-
-/* Fix 3: lists inside chat bubble (ul/ol) should not escape the bubble */
+/* =========================
+   LISTS INSIDE BUBBLES (Fix 3)
+========================= */
 .aman-ai-bubble ul,
 .aman-ai-bubble ol {
-  margin: 0.6rem 0;        /* remove large UA margins */
-  padding-left: 1.25rem;   /* indent bullets/nums inside bubble */
+  margin: 0.6rem 0;
+  padding-left: 1.25rem; /* keep bullets/nums inside bubble */
 }
 
 .aman-ai-bubble li {
   margin: 0.25rem 0;
-}
-
-/* Keep bullets inside the bubble visually */
-.aman-ai-bubble {
-  overflow-wrap: anywhere;
-  overflow: hidden; /* prevents list markers/margins from spilling out */
 }

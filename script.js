@@ -237,13 +237,15 @@ document.addEventListener("DOMContentLoaded", () => {
   
     // --- CYCLE TIMING (THIS is what you asked for) ---
     const FADE_IN_MS = 1400;      // fade in duration
-    const HOLD_MS = 100200;        // how long it stays before fading out
+    const HOLD_MS = 4000;        // how long it stays before fading out
     const FADE_OUT_MS = 900;     // fade out duration
     // Total cycle = ~4 seconds. Increase HOLD_MS to “last longer”.
   
     const getMatrixColor = () => {
-      const css = getComputedStyle(document.documentElement);
-      return css.getPropertyValue("--skills-matrix").trim() || "rgba(184, 137, 255, 0.95)";
+      // Read from the skills panel so light-mode overrides work
+      const panel = canvas.closest(".skills-panel") || skillsSection || document.body;
+      const css = getComputedStyle(panel);
+      return css.getPropertyValue("--skills-matrix").trim() || "rgba(60, 60, 60, 0.65)";
     };
   
     let w = 0, h = 0, cols = 0, rows = 0, dpr = 1;
