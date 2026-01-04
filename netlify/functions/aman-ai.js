@@ -52,6 +52,17 @@ function checkRateLimit(event) {
 
 exports.handler = async (event) => {
     try {
+      if (!event || !event.httpMethod) {
+        return {
+          statusCode: 500,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ 
+            text: "Invalid request format.",
+            llmEnabled: false 
+          }),
+        };
+      }
+
       if (event.httpMethod !== "POST") {
         return {
           statusCode: 405,
@@ -75,7 +86,21 @@ exports.handler = async (event) => {
         };
       }
   
-      const { question, contexts } = JSON.parse(event.body || "{}");
+      let question, contexts;
+      try {
+        const parsed = JSON.parse(event.body || "{}");
+        question = parsed.question;
+        contexts = parsed.contexts;
+      } catch (parseError) {
+        return {
+          statusCode: 400,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ 
+            text: "Invalid JSON in request body.",
+            llmEnabled: false 
+          }),
+        };
+      }
   
       if (!question || typeof question !== "string") {
         return {
@@ -93,7 +118,7 @@ exports.handler = async (event) => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             text:
-              "I can help with questions about Aman's experience, skills, projects, and education. Try: "What's Aman's best cloud project?"",
+              "I can help with questions about Aman's experience, skills, projects, and education. Try: \"What's Aman's best cloud project?\"",
           }),
         };
       }
@@ -198,6 +223,7 @@ exports.handler = async (event) => {
         throw fetchError; // Re-throw to be caught by outer catch
       }
     } catch (e) {
+      console.error("Aman AI function error:", e);
       return {
         statusCode: 200,
         headers: { "Content-Type": "application/json" },

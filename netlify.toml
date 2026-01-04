@@ -1,5 +1,15 @@
 # Netlify Configuration
-# Content Security Policy and Security Headers
+
+[build]
+  functions = "netlify/functions"
+
+[functions]
+  node_bundler = "esbuild"
+  external_node_modules = []
+
+# Ensure Node.js 18+ for native fetch support
+[build.environment]
+  NODE_VERSION = "18"
 
 [[headers]]
   for = "/*"
