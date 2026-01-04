@@ -655,14 +655,32 @@
   }
 
   async function callAmanAiLLM(question, contexts) {
-  const res = await fetch("/.netlify/functions/aman-ai", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ question, contexts }),
-  });
+    try {
+      const res = await fetch("/.netlify/functions/aman-ai", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question, contexts }),
+      });
 
-  const data = await res.json().catch(() => null);
-    return data && data.text ? String(data.text) : null;
+      if (!res.ok) {
+        console.error("LLM API error:", res.status, res.statusText);
+        return null;
+      }
+
+      const data = await res.json();
+      
+      // Check if LLM was actually used (not a fallback message)
+      if (data && data.text && data.llmEnabled !== false) {
+        return String(data.text);
+      }
+      
+      // If llmEnabled is false, it means the function fell back to local Q&A
+      // Return null so we use our built-in AI instead
+      return null;
+    } catch (error) {
+      console.error("LLM fetch error:", error);
+      return null;
+    }
   }
 
   function isAbusiveOrOffTopic(q) {
