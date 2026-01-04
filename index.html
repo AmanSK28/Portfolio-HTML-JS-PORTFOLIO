@@ -4,18 +4,44 @@
   <!-- Meta & Title -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My Portfolio</title>
+  <title>Aman Kang - Portfolio | Software Engineer & AI Enthusiast</title>
+  
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Aman Kang's portfolio - Software engineer specializing in AI, Cloud, and Data with experience at EY, Nomura, and Baillie Gifford. Currently studying Computer Science at Newcastle University." />
+  <meta name="keywords" content="Aman Kang, software engineer, AI, cloud computing, data science, portfolio, Newcastle University, EY, technology consultant" />
+  <meta name="author" content="Aman Kang" />
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="Aman Kang - Portfolio | Software Engineer & AI Enthusiast" />
+  <meta property="og:description" content="Software engineer specializing in AI, Cloud, and Data. Explore my experience, projects, and skills." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-portfolio-url.netlify.app" />
+  <meta property="og:image" content="./assets/profile.png" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Aman Kang - Portfolio" />
+  <meta name="twitter:description" content="Software engineer specializing in AI, Cloud, and Data" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://your-portfolio-url.netlify.app" />
+
+  <!-- Resource Hints -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://api.groq.com" />
+  <link rel="preload" href="css/main.css" as="style" />
 
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/sections.css" />
+  <link rel="stylesheet" href="css/skills.css" />
+  <link rel="stylesheet" href="css/aman-ai.css" />
   <link rel="stylesheet" href="mediaqueries.css" />
-
-  <!-- Scripts -->
-  <script type="text/javascript" src="darkmode.js" defer></script>
 </head>
 
 <body class="darkmode">
-
 
   <header class="site-header">
     <button id="theme-switch" aria-label="Toggle dark mode" type="button">
@@ -47,17 +73,17 @@
     <nav id="hamburger-nav">
       <div class="logo">Aman Kang</div>
       <div class="hamburger-menu">
-        <div class="hamburger-icon" onclick="toggleMenu()">
+        <div class="hamburger-icon" role="button" tabindex="0" aria-expanded="false" aria-label="Toggle navigation menu">
           <span></span>
           <span></span>
           <span></span>
         </div>
         <div class="menu-links">
-          <li><a href="#about" onclick="toggleMenu()">About</a></li>
-          <li><a href="#experience" onclick="toggleMenu()">Experience</a></li>
-          <li><a href="#projects" onclick="toggleMenu()">Projects</a></li>
-          <li><a href="#contact" onclick="toggleMenu()">Contact</a></li>
-          <li><a href="#aman-ai" onclick="toggleMenu()">Aman AI</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+          <li><a href="#aman-ai">Aman AI</a></li>
         </div>
       </div>
     </nav>
@@ -66,19 +92,20 @@
   </header>
 
   <!-- Profile Section -->
-  <section id="profile">
+  <main id="main-content">
+  <section id="profile" aria-labelledby="profile-title">
     <div class="section__pic-container">
-      <img src="./assets/profile.png" alt="Aman Kang profile picture" />
+      <img src="./assets/profile.png" alt="Aman Kang profile picture" width="300" height="300" loading="eager" />
     </div>
     <div class="section__text">
       <p class="section__text__p1">Hello, I'm</p>
-      <h1 class="title">Aman Kang</h1>
+      <h1 id="profile-title" class="title">Aman Kang</h1>
       <h2 id="typewriter" class="section__text__p2"></h2>
       <div class="btn-container">
-        <button class="btn btn-color-2" onclick="window.open('./assets/CV-Aman.pdf')">
+        <button class="btn btn-color-2" type="button" aria-label="Download CV">
           Download CV
         </button>
-        <button class="btn btn-color-1" onclick="location.href='#contact'">
+        <button class="btn btn-color-1" type="button" aria-label="Go to contact section">
           Contact Info
         </button>
       </div>
@@ -87,13 +114,23 @@
           src="./assets/github.png"
           alt="My Github profile"
           class="icon"
-          onclick="location.href='https://github.com'"
+          role="button"
+          tabindex="0"
+          aria-label="Visit GitHub profile"
+          width="32"
+          height="32"
+          loading="lazy"
         />
         <img
           src="./assets/linkedin.png"
           alt="My LinkedIn profile"
           class="icon"
-          onclick="location.href='https://linkedin.com/in/aman-kang44/'"
+          role="button"
+          tabindex="0"
+          aria-label="Visit LinkedIn profile"
+          width="32"
+          height="32"
+          loading="lazy"
         />
       </div>
     </div>
@@ -103,72 +140,56 @@
       <div class="profile-circle"></div>
       <div class="profile-circle"></div>
     </div>
-    <img
-      src="./assets/arrow.png"
-      alt="Arrow icon"
-      class="icon arrow"
-      onclick="location.href='./#about'"
-    />
   </section>
 
   <!-- About Section -->
-  <section id="about">
+  <section id="about" aria-labelledby="about-title">
     <p class="section__text__p1">Get To Know More</p>
-    <h1 class="title">About Me</h1>
+    <h1 id="about-title" class="title">About Me</h1>
     <div class="section-container">
       <!-- About Image / Emoji -->
       <div class="section__pic-container">
-        <span class="about-emoji">👨🏾‍💻</span>
+        <span class="about-emoji" role="img" aria-label="Developer emoji">👨🏾‍💻</span>
       </div>
       
-        <!-- About Text -->
-        <div class="text-container about-text">
-          <p>
-            Hello, I’m <span class="highlight-green">Aman</span>, a
-            <span class="highlight-green">Microsoft Services Technology Consultant</span>
-            with a strong interest in <span class="highlight-green">Cloud</span> and
-            <span class="highlight-green">AI</span>.
-          </p>
-        
-          <p>
-            I’m currently studying <span class="highlight-green">Computer Science</span>
-            at <span class="highlight-green">Newcastle University</span> and on track for
-            a <span class="highlight-green">first-class honours</span> degree. Notable
-            modules include <span class="highlight-green">Algorithm Analysis</span>,
-            <span class="highlight-green">Data Science &amp; Machine Learning</span>,
-            <span class="highlight-green">Software Design</span>, and
-            <span class="highlight-green">Computer Architecture</span>.
-          </p>
-        
-          <p>
-            Outside of university, I regularly take part in
-            <span class="highlight-green">team-based sporting events</span>, which have
-            helped me develop <span class="highlight-green">discipline</span>,
-            <span class="highlight-green">resilience</span>, and
-            <span class="highlight-green">clear communication</span>. I’m keen to apply
-            my <span class="highlight-green">technical foundation</span> and
-            <span class="highlight-green">growth mindset</span> to keep improving both my
-            <span class="highlight-green">interpersonal</span> and
-            <span class="highlight-green">technical</span> skills.
-          </p>
-        </div>
-        
-
-     
+      <!-- About Text -->
+      <div class="text-container about-text">
+        <p>
+          Hello, I'm <span class="highlight-green">Aman</span>, a
+          <span class="highlight-green">Microsoft Services Technology Consultant</span>
+          with a strong interest in <span class="highlight-green">Cloud</span> and
+          <span class="highlight-green">AI</span>.
+        </p>
+      
+        <p>
+          I'm currently studying <span class="highlight-green">Computer Science</span>
+          at <span class="highlight-green">Newcastle University</span> and on track for
+          a <span class="highlight-green">first-class honours</span> degree. Notable
+          modules include <span class="highlight-green">Algorithm Analysis</span>,
+          <span class="highlight-green">Data Science &amp; Machine Learning</span>,
+          <span class="highlight-green">Software Design</span>, and
+          <span class="highlight-green">Computer Architecture</span>.
+        </p>
+      
+        <p>
+          Outside of university, I regularly take part in
+          <span class="highlight-green">team-based sporting events</span>, which have
+          helped me develop <span class="highlight-green">discipline</span>,
+          <span class="highlight-green">resilience</span>, and
+          <span class="highlight-green">clear communication</span>. I'm keen to apply
+          my <span class="highlight-green">technical foundation</span> and
+          <span class="highlight-green">growth mindset</span> to keep improving both my
+          <span class="highlight-green">interpersonal</span> and
+          <span class="highlight-green">technical</span> skills.
+        </p>
       </div>
     </div>
-    <img
-      src="./assets/arrow.png"
-      alt="Arrow icon"
-      class="icon arrow"
-      onclick="location.href='./#skills'"
-    />
   </section>
 
   <!-- Skills Section -->
-<section id="skills" class="skills-section">
+<section id="skills" class="skills-section" aria-labelledby="skills-title">
   <p class="section__text__p1">Explore My</p>
-  <h1 class="title">Skills</h1>
+  <h1 id="skills-title" class="title">Skills</h1>
 
   <div class="skills-panel">
     <canvas id="skills-canvas" class="skills-canvas" aria-hidden="true"></canvas>
@@ -246,20 +267,13 @@
       </div>
     </div>
   </div>
-
-  <img
-    src="./assets/arrow.png"
-    alt="Arrow icon"
-    class="icon arrow"
-    onclick="location.href='./#aman-ai'"
-  />
-</section> <!-- ✅ CLOSE SKILLS SECTION PROPERLY -->
+</section>
 
 
 <!-- Aman AI Section -->
-<section id="aman-ai" class="aman-ai-section">
+<section id="aman-ai" class="aman-ai-section" aria-labelledby="aman-ai-title">
   <p class="section__text__p1">Try</p>
-  <h1 class="title">Aman AI</h1>
+  <h1 id="aman-ai-title" class="title">Aman AI</h1>
 
   <p class="aman-ai-intro">
     Ask me anything about my experience.
@@ -304,20 +318,13 @@
       <button class="btn btn-color-1 aman-ai-send" type="submit" aria-label="Send message">Send</button>
     </form>
   </div>
-
-  <img
-    src="./assets/arrow.png"
-    alt="Arrow icon"
-    class="icon arrow"
-    onclick="location.href='./#experience'"
-  />
 </section>
 
 
   <!-- Experience Section -->
-  <section id="experience">
+  <section id="experience" aria-labelledby="experience-title">
     <p class="section__text__p1">Explore My</p>
-    <h1 class="title">Experience and Certifications</h1>
+    <h1 id="experience-title" class="title">Experience and Certifications</h1>
     <div class="time-line">
       <div class="container">
         <div class="text-content">
@@ -401,18 +408,12 @@
         </div>
       </div>
     </div>
-    <img
-      src="./assets/arrow.png"
-      alt="Arrow icon"
-      class="icon arrow"
-      onclick="location.href='./#projects'"
-    />
   </section>
 
   <!-- Projects Section -->
-  <section id="projects" class="projects">
+  <section id="projects" class="projects" aria-labelledby="projects-title">
     <p class="section__text__p1">Browse My Recent</p>
-    <h1 class="title">Projects</h1>
+    <h1 id="projects-title" class="title">Projects</h1>
     <div class="card-container">
       <div class="card">
         <div class="card-background" style="background-image: url('assets/pending.png');"></div>
@@ -436,37 +437,41 @@
         </div>
       </div>
     </div>
-    <img
-      src="./assets/arrow.png"
-      alt="Arrow icon"
-      class="icon arrow"
-      onclick="location.href='./#contact'"
-    />
   </section>
 
   <!-- Contact Section -->
-  <section id="contact">
+  <section id="contact" aria-labelledby="contact-title">
     <p class="section__text__p1">Get in Touch</p>
-    <h1 class="title">Contact Me</h1>
+    <h1 id="contact-title" class="title">Contact Me</h1>
     <div class="contact-info-upper-container">
       <div class="contact-info-container">
-        <img src="./assets/email.png" alt="Email icon" class="icon contact-icon email-icon" />
+        <img src="./assets/email.png" alt="Email icon" class="icon contact-icon email-icon" width="40" height="40" loading="lazy" />
         <p><a href="mailto:AmanSinghk@icloud.com">AmanSinghk@icloud.com</a></p>
       </div>
       <div class="contact-info-container">
-        <img src="./assets/linkedin.png" alt="LinkedIn icon" class="icon contact-icon" />
+        <img src="./assets/linkedin.png" alt="LinkedIn icon" class="icon contact-icon" width="32" height="32" loading="lazy" />
         <p><a href="https://www.linkedin.com/in/aman-kang44/">LinkedIn</a></p>
       </div>
     </div>
   </section>
 
+  </main>
+
   <!-- Footer Section -->
   <footer>
-    </nav>
     <p>Copyright &#169; 2026 Aman Kang. All Rights Reserved.</p>
   </footer>
 
   <!-- Scripts -->
-  <script src="script.js"></script>
+  <script src="js/nav.js" defer></script>
+  <script src="js/navigation.js" defer></script>
+  <script src="js/typewriter.js" defer></script>
+  <script src="js/theme.js" defer></script>
+  <script src="js/reveal.js" defer></script>
+  <script src="js/parallax.js" defer></script>
+  <script src="js/experience.js" defer></script>
+  <script src="js/skills-matrix.js" defer></script>
+  <script src="js/aman-ai-ui.js" defer></script>
+  <script src="js/main.js" defer></script>
 </body>
 </html>

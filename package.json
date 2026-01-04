@@ -1,6 +1,9 @@
 {
-  "dependencies": {
-    "@splinetool/loader": "^1.9.28",
-    "three": "^0.168.0"
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "Static portfolio website with AI-powered Q&A",
+  "scripts": {
+    "format:check": "echo 'No formatter configured. Use editor settings (Prettier, ESLint, etc.)'",
+    "lint:check": "echo 'No linter configured. Use editor settings (ESLint, etc.)'"
   }
 }

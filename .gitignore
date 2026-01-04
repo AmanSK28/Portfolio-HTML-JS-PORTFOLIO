@@ -8,3 +8,18 @@ node_modules/
 
 # Local env secrets
 .env
+
+# Build outputs
+dist/
+build/
+
+# Editor directories
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+Thumbs.db

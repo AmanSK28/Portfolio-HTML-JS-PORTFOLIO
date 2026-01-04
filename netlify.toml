@@ -1,0 +1,22 @@
+# Netlify Configuration
+# Content Security Policy and Security Headers
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Content Security Policy
+    # Allows self, inline scripts/styles (for vanilla JS), Google Fonts, and Groq API
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.groq.com; frame-ancestors 'none';"
+    
+    # Prevent clickjacking
+    X-Frame-Options = "DENY"
+    
+    # Prevent MIME type sniffing
+    X-Content-Type-Options = "nosniff"
+    
+    # Referrer policy
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    
+    # Permissions policy (restrict certain browser features)
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+

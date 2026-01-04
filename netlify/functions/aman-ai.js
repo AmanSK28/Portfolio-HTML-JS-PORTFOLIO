@@ -1,5 +1,54 @@
-// netlify/functions/aman-ai.js
-// CommonJS format = maximum compatibility on Netlify Functions.
+/**
+ * LLM-powered Q&A via Groq API. In-memory rate limiting (resets on cold start).
+ * For production scale, migrate to Redis or Netlify Edge Functions.
+ */
+const rateLimitMap = new Map();
+const RATE_LIMIT_WINDOW_MS = 60000; // 1 minute
+const RATE_LIMIT_MAX_REQUESTS = 10; // 10 requests per minute per IP
+
+function getRateLimitKey(event) {
+  const ip = event.headers["x-forwarded-for"]?.split(",")[0]?.trim() || 
+             event.headers["x-nf-client-connection-ip"] || 
+             "unknown";
+  return ip;
+}
+
+function checkRateLimit(event) {
+  const key = getRateLimitKey(event);
+  const now = Date.now();
+  
+  for (const [k, v] of rateLimitMap.entries()) {
+    if (now - v.firstRequest > RATE_LIMIT_WINDOW_MS) {
+      rateLimitMap.delete(k);
+    }
+  }
+  
+  const record = rateLimitMap.get(key);
+  
+  if (!record) {
+    rateLimitMap.set(key, { firstRequest: now, count: 1 });
+    return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS - 1 };
+  }
+  
+  if (now - record.firstRequest > RATE_LIMIT_WINDOW_MS) {
+    rateLimitMap.set(key, { firstRequest: now, count: 1 });
+    return { allowed: true, remaining: RATE_LIMIT_MAX_REQUESTS - 1 };
+  }
+  
+  if (record.count >= RATE_LIMIT_MAX_REQUESTS) {
+    return { 
+      allowed: false, 
+      remaining: 0,
+      resetAt: record.firstRequest + RATE_LIMIT_WINDOW_MS
+    };
+  }
+  
+  record.count++;
+  return { 
+    allowed: true, 
+    remaining: RATE_LIMIT_MAX_REQUESTS - record.count 
+  };
+}
 
 exports.handler = async (event) => {
     try {
@@ -8,6 +57,21 @@ exports.handler = async (event) => {
           statusCode: 405,
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ text: "Method not allowed" }),
+        };
+      }
+  
+      const rateLimit = checkRateLimit(event);
+      if (!rateLimit.allowed) {
+        return {
+          statusCode: 429,
+          headers: { 
+            "Content-Type": "application/json",
+            "Retry-After": "60"
+          },
+          body: JSON.stringify({ 
+            text: "Too many requests. Please wait a minute before trying again.",
+            llmEnabled: false
+          }),
         };
       }
   
@@ -21,7 +85,6 @@ exports.handler = async (event) => {
         };
       }
   
-      // Light abuse/off-topic filter to prevent “idiot” style prompts from mapping to random portfolio docs
       const qLower = question.toLowerCase();
       const abusive = /(idiot|stupid|dumb|moron|trash|hate|ugly)/i;
       if (abusive.test(qLower)) {
@@ -30,7 +93,7 @@ exports.handler = async (event) => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             text:
-              "I can help with questions about Aman’s experience, skills, projects, and education. Try: “What’s Aman’s best cloud project?”",
+              "I can help with questions about Aman's experience, skills, projects, and education. Try: "What's Aman's best cloud project?"",
           }),
         };
       }
@@ -48,7 +111,6 @@ exports.handler = async (event) => {
         };
       }
   
-      // Keep contexts small and clean
       const safe = Array.isArray(contexts) ? contexts.slice(0, 4) : [];
       const contextText = safe
         .map(
@@ -56,8 +118,7 @@ exports.handler = async (event) => {
             `Source ${i + 1}: ${c.title || "Portfolio"}\n${(c.text || "").slice(0, 1200)}\n`
         )
         .join("\n");
-  
-      // Grounded “RAG” prompt: ONLY use context
+
       const system = `
   You are Aman AI, a portfolio assistant.
   Answer the user's question ONLY using the provided CONTEXT.
@@ -76,46 +137,66 @@ exports.handler = async (event) => {
   ${contextText}
   `.trim();
   
-      // Groq is OpenAI-compatible (base URL: https://api.groq.com/openai/v1)  [oai_citation:5‡GroqCloud](https://console.groq.com/docs/openai?utm_source=chatgpt.com)
-      const resp = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${apiKey}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          model: "llama-3.1-8b-instant",
-          temperature: 0.5,
-          max_tokens: 380,
-          messages: [
-            { role: "system", content: system },
-            { role: "user", content: user },
-          ],
-        }),
-      });
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000);
+      
+      try {
+        const resp = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${apiKey}`,
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            model: "llama-3.1-8b-instant",
+            temperature: 0.5,
+            max_tokens: 380,
+            messages: [
+              { role: "system", content: system },
+              { role: "user", content: user },
+            ],
+          }),
+          signal: controller.signal,
+        });
+        
+        clearTimeout(timeoutId);
   
-      if (!resp.ok) {
-        const err = await resp.text();
+        if (!resp.ok) {
+          const err = await resp.text();
+          return {
+            statusCode: 200,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              text:
+                "LLM mode is temporarily unavailable — falling back to the local Q&A.",
+              llmEnabled: false,
+              debug: err.slice(0, 250),
+            }),
+          };
+        }
+  
+        const data = await resp.json();
+        const text = data?.choices?.[0]?.message?.content?.trim();
+    
         return {
           statusCode: 200,
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            text:
-              "LLM mode is temporarily unavailable — falling back to the local Q&A.",
-            llmEnabled: false,
-            debug: err.slice(0, 250),
-          }),
+          body: JSON.stringify({ text: text || "No response generated.", llmEnabled: true }),
         };
+      } catch (fetchError) {
+        clearTimeout(timeoutId);
+        if (fetchError.name === "AbortError") {
+          return {
+            statusCode: 200,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              text: "Request timed out — falling back to the local Q&A.",
+              llmEnabled: false,
+            }),
+          };
+        }
+        throw fetchError; // Re-throw to be caught by outer catch
       }
-  
-      const data = await resp.json();
-      const text = data?.choices?.[0]?.message?.content?.trim();
-  
-      return {
-        statusCode: 200,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ text: text || "No response generated.", llmEnabled: true }),
-      };
     } catch (e) {
       return {
         statusCode: 200,

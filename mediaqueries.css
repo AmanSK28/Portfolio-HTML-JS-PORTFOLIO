@@ -1,4 +1,3 @@
-/* For large screens (max-width: 1400px) */
 @media screen and (max-width: 1400px) {
     #profile {
       height: 83vh;
@@ -35,7 +34,6 @@
     }
   }
   
-  /* For medium screens (max-width: 1200px) */
   @media screen and (max-width: 1200px) {
     #desktop-nav {
       display: none;
@@ -56,7 +54,6 @@
       padding-right: 90px;
     }
   
-    /* Button stays inside header, centered vertically */
     button#theme-switch {
       height: 44px;
       width: 44px;
@@ -73,10 +70,6 @@
     #profile,
     .section-container {
       display: block;
-    }
-  
-    .arrow {
-      display: none;
     }
   
     section,
@@ -156,7 +149,6 @@
     }
   }
   
-  /* For small screens (max-width: 600px) */
   @media screen and (max-width: 600px) {
     #contact,
     footer {
@@ -247,7 +239,6 @@
       height: 380px;
     }
   
-    /* Button stays inside header, centered vertically */
     button#theme-switch {
       height: 42px;
       width: 42px;
@@ -270,7 +261,6 @@
     }
   }
   
-  /* For extra small screens (max-width: 480px) */
   @media (max-width: 480px) {
     .time-line {
       width: 95%;
@@ -324,11 +314,6 @@
     }
   }
   
-
-  /* =========================
-   AMAN AI (responsive tweaks)
-========================= */
-
 @media screen and (max-width: 1200px) {
   .aman-ai-section {
     margin: 0 5%;
