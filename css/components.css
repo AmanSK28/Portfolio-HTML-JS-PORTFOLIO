@@ -50,6 +50,29 @@
   border: var(--color-btn2-hover-border) 0.1rem solid;
 }
 
+.btn-card-dark {
+  background-color: #2d2d2d;
+  color: white;
+  border: 1px solid #2d2d2d;
+}
+
+.btn-card-dark:hover {
+  cursor: pointer;
+  background-color: #3d3d3d;
+  color: white;
+  border: 1px solid #3d3d3d;
+}
+
+.darkmode .btn-card-dark {
+  background-color: #3d3d3d;
+  border: 1px solid #3d3d3d;
+}
+
+.darkmode .btn-card-dark:hover {
+  background-color: #4d4d4d;
+  border: 1px solid #4d4d4d;
+}
+
 .icon {
   cursor: pointer;
   height: 2rem;
@@ -81,15 +104,29 @@
   height: 550px;
   border-radius: 20px;
   overflow: hidden;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 8px 15px var(--color-card-shadow);
   background-color: var(--color-card-bg);
+}
+
+.card-skillscope:hover,
+.card-homelesshelper:hover,
+.card-wineanalysis:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 30px var(--project-card-hover-shadow);
+  z-index: 10;
 }
 
 .card:before {
   content: "";
   display: block;
   padding-top: 56.25%;
+}
+
+.card-skillscope:before,
+.card-homelesshelper:before,
+.card-wineanalysis:before {
+  display: none;
 }
 
 .card-background {
@@ -104,9 +141,18 @@
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.card:hover {
+body:not(.darkmode) .card:hover {
   transform: scale(1.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
 }
+
+.card-skillscope,
+.card-homelesshelper,
+.card-wineanalysis {
+  background-color: var(--project-card-bg);
+  border: 1px solid var(--project-card-border);
+}
+
 
 .content {
   position: relative;
@@ -115,6 +161,26 @@
   background-color: var(--color-content-bg);
   border-radius: 0 0 20px 20px;
   margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 200px;
+}
+
+.card-skillscope .content,
+.card-homelesshelper .content,
+.card-wineanalysis .content {
+  background-color: transparent;
+  border-radius: 0;
+  padding: 25px 25px 25px 25px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  min-height: 0;
 }
 
 .card-category {
@@ -126,11 +192,192 @@
   text-transform: uppercase;
 }
 
+.card-skillscope .card-category,
+.card-homelesshelper .card-category,
+.card-wineanalysis .card-category {
+  display: none;
+}
+
 .card-heading {
   color: var(--color-card-text);
   font-size: 24px;
   line-height: 1.4;
   font-weight: bold;
   margin: 0;
+}
+
+.card-skillscope .card-heading,
+.card-homelesshelper .card-heading,
+.card-wineanalysis .card-heading {
+  color: #b889ff;
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 26px;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.card-skillscope .card-heading,
+.card-homelesshelper .card-heading,
+.card-wineanalysis .card-heading {
+  color: var(--project-heading);
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 26px;
+  flex-shrink: 0;
+  line-height: 1.2;
+}
+
+.card-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 16px;
+  color: var(--color-card-text);
+  opacity: 0.8;
+}
+
+.card-icon svg {
+  width: 40px;
+  height: 40px;
+}
+
+.card-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.card-skillscope .card-logo,
+.card-homelesshelper .card-logo,
+.card-wineanalysis .card-logo {
+  margin-bottom: 20px;
+  margin-top: 0;
+  height: 120px;
+  min-height: 120px;
+  max-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-logo-img {
+  max-width: 160px;
+  max-height: 80px;
+  object-fit: contain;
+}
+
+.card-skillscope .card-logo-img,
+.card-homelesshelper .card-logo-img {
+  max-width: 200px;
+  max-height: 120px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}
+
+.card-info {
+  margin-bottom: 20px;
+}
+
+.card-skillscope .card-info,
+.card-homelesshelper .card-info,
+.card-wineanalysis .card-info {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 0;
+  overflow: visible;
+  padding: 0 10px;
+}
+
+.card-description {
+  color: var(--color-card-text);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 12px 0 0 0;
+  opacity: 0.85;
+}
+
+.card-skillscope .card-description,
+.card-homelesshelper .card-description,
+.card-wineanalysis .card-description {
+  color: var(--project-desc);
+  text-align: center;
+  margin: 0;
+  padding: 0 5px;
+  font-size: 15px;
+  line-height: 1.6;
+  flex-shrink: 0;
+}
+
+.card-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.card-skillscope .card-actions,
+.card-homelesshelper .card-actions,
+.card-wineanalysis .card-actions {
+  margin-top: auto;
+  padding-top: 15px;
+  padding-bottom: 0;
+  flex-shrink: 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.card-actions .btn {
+  width: auto;
+  min-width: 100px;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.9rem;
+}
+
+.card-actions .btn:focus {
+  outline: 2px solid var(--color-link);
+  outline-offset: 2px;
+}
+
+.card-github-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  text-decoration: none;
+  border-radius: 4px;
+}
+
+.card-github-link:hover {
+  transform: scale(1.1);
+}
+
+.card-github-link:focus {
+  outline: 2px solid var(--color-link);
+  outline-offset: 2px;
+}
+
+/* Wine Analysis SVG icon styling */
+.card-wineanalysis .card-logo svg {
+  width: 100%;
+  height: 100%;
+  max-width: 200px;
+  max-height: 120px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+body:not(.darkmode) .card-wineanalysis .card-logo svg {
+  color: rgba(0, 0, 0, 0.8);
 }
 

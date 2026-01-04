@@ -43,6 +43,14 @@
   --purple-gradient-end: #b889ff;
 
   --header-height: 96px;
+
+  --project-card-bg: #f6f6f7;
+  --project-card-border: rgba(0,0,0,0.12);
+  --project-card-hover-shadow: rgba(0,0,0,0.14);
+  --project-heading: #111;
+  --project-desc: rgba(0,0,0,0.78);
+
+  
 }
 
 .darkmode {
@@ -65,6 +73,12 @@
 
   --color-timeline-gradient-start: #ff00e1;
   --color-timeline-gradient-end: #ddff00;
+
+  --project-card-bg: #2d2d2d;
+  --project-card-border: rgba(184,137,255,0.22);
+  --project-card-hover-shadow: rgba(184,137,255,0.30);
+  --project-heading: #b889ff;
+  --project-desc: rgba(255,255,255,0.90);
 }
 
 .darkmode a {
@@ -100,6 +114,16 @@
 
 .darkmode .icon {
   filter: invert(1);
+}
+
+.darkmode .card:hover {
+  box-shadow: 0 12px 30px rgba(184, 137, 255, 0.3);
+}
+
+.darkmode .card-skillscope:hover,
+.darkmode .card-homelesshelper:hover,
+.darkmode .card-wineanalysis:hover {
+  box-shadow: 0 12px 30px rgba(184, 137, 255, 0.3);
 }
 
 .darkmode .fixed-top-line {
